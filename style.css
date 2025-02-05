@@ -1,0 +1,39 @@
+:root {
+    --text-color-light: #FFF;
+    --text-color-dark: #333;
+    --background-color-light: #FFF;
+    --background-color-dark: #333;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        color: var(--text-color-light);
+        background-color: var(--background-color-dark);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        color: var(--text-color-dark);
+        background-color: var(--background-color-light);
+    }
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: inherit;
+}
