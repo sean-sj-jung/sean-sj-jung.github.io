@@ -41,3 +41,24 @@ ul.posts {
 ul.posts li {
     list-style: none;
 }
+
+.social-links {
+    display: flex;
+    gap: 15px; /* Space between icons */
+    align-items: center;
+}
+
+.social-links a {
+    text-decoration: none; /* Remove underlines */
+    color: #333; /* Default icon color */
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #0077b5; /* LinkedIn blue on hover */
+}
+
+.social-links a:nth-child(2):hover {
+    color: #000; /* GitHub black on hover */
+}
+
