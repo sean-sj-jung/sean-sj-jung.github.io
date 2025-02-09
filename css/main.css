@@ -69,3 +69,31 @@ ul.posts li {
     color: #555;
     margin-top: 5px;
 }
+
+/* Remove bullet points and padding */
+.posts-list {
+    list-style: none; 
+    padding: 0; 
+    margin: 0;
+}
+
+/* Style the post titles */
+.posts-list a {
+    font-size: 22px;  /* Larger font size for titles */
+    font-weight: bold;
+    text-decoration: none;
+    color: #0073e6;
+    transition: color 0.3s ease;
+}
+
+/* Hover effect for post titles */
+.posts-list a:hover {
+    color: #005bb5;
+}
+
+/* Style for the excerpt */
+.posts-list p {
+    font-size: 16px;  /* Slightly smaller than the title */
+    color: #555;
+    margin: 5px 0 20px 0; /* Adds space between posts */
+}
