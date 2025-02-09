@@ -62,3 +62,30 @@ ul.posts li {
     color: #000; /* GitHub black on hover */
 }
 
+.recent-posts {
+    list-style: none; /* Remove bullets */
+    padding: 0;
+}
+
+.recent-posts li {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.recent-posts a {
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #0073e6;
+}
+
+.recent-posts a:hover {
+    color: #005bb5;
+}
+
+.recent-posts p {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+}
