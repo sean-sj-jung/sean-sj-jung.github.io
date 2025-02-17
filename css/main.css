@@ -97,3 +97,8 @@ ul.posts li {
     color: #555;
     margin: 5px 0 20px 0; /* Adds space between posts */
 }
+
+.post {
+    line-height: 1.6; /* Increase for more spacing (default is usually 1.2 or 1.4) */
+    margin-bottom: 15px; /* Add space after paragraphs */
+}
