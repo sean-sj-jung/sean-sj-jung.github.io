@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Placeholder for next thing"
+title: "Knowledge Distillation"
 date: 2025-02-20
-excerpt: "Knowledge Distillation"
+excerpt: "Overview and Sample code of Knowledge Distillation"
 ---
 
 ### Knowledge Distillation
@@ -83,3 +83,5 @@ def train_knowledge_distillation(teacher, student, train_loader, epochs, learnin
         print(f"Epoch [{epoch+1}/{epochs}], Loss: {running_loss:.4f}")
 ```
 
+### References
+[PyTorch Tutorial](https://pytorch.org/tutorials/beginner/knowledge_distillation_tutorial.html)
