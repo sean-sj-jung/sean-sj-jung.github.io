@@ -19,6 +19,8 @@ excerpt: "Overview and sample code of Knowledge Distillation"
   - Higher T smooths the probability distribution, exposing inter-class relationships.
   - Since scaling logits by 1/T reduces their variance (by 1/T^2), we compensate by multiplying the KL divergence loss by T^2.
 
+
+### Implementation in Python
 ```python
 import torch
 import torch.nn as nn
