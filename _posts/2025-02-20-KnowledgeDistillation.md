@@ -2,7 +2,7 @@
 layout: post
 title: "Knowledge Distillation"
 date: 2025-02-20
-excerpt: "Overview and Sample code of Knowledge Distillation"
+excerpt: "Overview and sample code of Knowledge Distillation"
 ---
 
 ### Knowledge Distillation
