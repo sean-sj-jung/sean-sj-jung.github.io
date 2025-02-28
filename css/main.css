@@ -100,10 +100,10 @@ ul.posts li {
 
 .post {
     line-height: 1.6; /* Increase for more spacing (default is usually 1.2 or 1.4) */
-    margin-bottom: 10px; /* Add space after paragraphs */
+    margin-bottom: 5px; /* Add space after paragraphs */
 }
 
 h1, h2, h3 {
-    margin-top: 5px;
-    margin-bottom: 1px;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
