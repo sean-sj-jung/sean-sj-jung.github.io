@@ -19,11 +19,9 @@ a {
 a:hover {
     text-decoration: underline;
 }
-/* h1 {
-    font-size: 2em;
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
-} */
 p {
+    margin-top: 5px;
+    margin-bottom: 5px;
     font-size: 1.2em;
     line-height: 1.0em;
     color: #333;
@@ -32,13 +30,19 @@ footer {
     border-top: 1px solid #d5d5d5;
     font-size: .8em;
 }
+h1, h2, h3 {
+    margin-top: 5px; /* Reduce space below headings */
+    margin-bottom: 5px;
+}
 
-ul.posts { 
-    margin: 5px auto 10px; 
+
+
+ul.post { 
+    margin: 5px auto 5px; 
     font-size: 1.5em;
 }
 
-ul.posts li {
+ul.post li {
     list-style: none;
 }
 
@@ -50,7 +54,7 @@ ul.posts li {
 .recent-posts li {
     margin-bottom: 15px;
     border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
+    /* padding-bottom: 10px; */
 }
 
 .recent-posts a {
