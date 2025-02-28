@@ -34,7 +34,7 @@ footer {
 }
 
 ul.posts { 
-    margin: 20px auto 40px; 
+    margin: 5px auto 10px; 
     font-size: 1.5em;
 }
 
@@ -70,44 +70,11 @@ ul.posts li {
     margin-top: 5px;
 }
 
-/* Remove bullet points and padding */
-.posts-list {
-    list-style: none; 
-    padding: 0; 
-    margin: 0;
-}
-
-/* Style the post titles */
-.posts-list a {
-    font-size: 22px;  /* Larger font size for titles */
-    font-weight: bold;
-    text-decoration: none;
-    color: #0073e6;
-    transition: color 0.3s ease;
-}
-
-/* Hover effect for post titles */
-.posts-list a:hover {
-    color: #005bb5;
-}
-
-/* Style for the excerpt */
-.posts-list p {
-    font-size: 16px;  /* Slightly smaller than the title */
-    color: #555;
-    margin: 5px 0 20px 0; /* Adds space between posts */
-}
-
 .post {
-    line-height: 1.4; /* Increase for more spacing (default is usually 1.2 or 1.4) */
+    line-height: 1.2; /* Increase for more spacing (default is usually 1.2 or 1.4) */
     margin-bottom: 5px; /* Add space after paragraphs */
 }
 
 .post h1, .post h2, .post h3 {
     margin-bottom: 5px; /* Reduce space below headings */
 }
-
-/* h1, h2, h3 {
-    margin-top: 15px;
-    margin-bottom: 10px;
-} */
