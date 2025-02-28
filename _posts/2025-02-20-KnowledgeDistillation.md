@@ -5,7 +5,7 @@ date: 2025-02-20
 excerpt: "Overview and sample code of Knowledge Distillation"
 ---
 
-### Knowledge Distillation
+## Knowledge Distillation
 
 - Goal: Train a smaller (student) model using knowledge from a larger, fully-trained (teacher) model.
 - Training Strategy: The student learns from both:
