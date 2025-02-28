@@ -31,19 +31,13 @@ footer {
     font-size: .8em;
 }
 h1, h2, h3 {
-    margin-top: 5px; /* Reduce space below headings */
+    margin-top: 10px; /* Reduce space below headings */
     margin-bottom: 5px;
 }
 
-
-
-ul.post { 
+ul { 
     margin: 5px auto 5px; 
     font-size: 1.5em;
-}
-
-ul.post li {
-    list-style: none;
 }
 
 .recent-posts {
@@ -53,8 +47,8 @@ ul.post li {
 
 .recent-posts li {
     margin-bottom: 15px;
-    border-bottom: 1px solid #ddd;
-    /* padding-bottom: 10px; */
+    border-top: 1px solid #ddd;
+    /* padding-bottom: 5px; */
 }
 
 .recent-posts a {
