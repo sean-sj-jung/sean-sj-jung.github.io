@@ -32,7 +32,7 @@ footer {
 }
 h1, h2, h3 {
     margin-top: 10px; /* Reduce space below headings */
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 ul { 
@@ -51,6 +51,7 @@ li {
 }
 
 .recent-posts li {
+    margin-bottom: 8px;
     margin-bottom: 15px;
     border-top: 1px solid #ddd;
     /* padding-bottom: 5px; */
