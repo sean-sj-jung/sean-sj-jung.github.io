@@ -19,7 +19,7 @@ excerpt: "Testing smolagent capability in data analyst work"
 ### Notes
 - `CodeAgent` seems to expect a code block at every step. If the first step involves planning without executable code, an error message is generated, though this does not interrupt the workflow.
 - When a schema is not provided, the agent still generates an SQL query, resulting in a "table not found" error. It then writes a query to inspect the database and retrieve table and column names.
-  - **Question:** Could this be considered a form of hallucination?
+  - This could become a costly hallucination.
 - The system prompt is initialized when `agent.run()` is executed.
   - To modify the system prompt, update `agent.prompt_templates['system_prompt']`.
 - `additional_authorized_imports` is difficult to work with, as it assumes the user already knows all the libraries the agent will need to complete the task.

@@ -3,7 +3,7 @@ body {
     width: 70%;
 }
 nav ul, footer ul {
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+    font-family:'Arial', 'Arial', 'Sans-Serif';
     padding: 0px;
     list-style: none;
     font-weight: bold;
@@ -35,14 +35,13 @@ h1, h2, h3 {
     margin-bottom: 10px;
 }
 
-ul { 
-    margin: 0px auto 5px; 
+/* ul {  */
+    /* margin: 0px auto 5px;  */
     /* font-size: 1.5em; */
-}
+/* } */
 
 li {
     font-size: 14px;
-
 }
 
 .recent-posts {
