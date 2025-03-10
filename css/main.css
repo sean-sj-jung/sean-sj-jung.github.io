@@ -1,6 +1,8 @@
 body {
     margin: 60px auto;
     width: 70%;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text */
 }
 nav ul, footer ul {
     font-family:'Arial', 'Arial', 'Sans-Serif';
@@ -14,25 +16,32 @@ nav ul li, footer ul li {
 }
 a {
     text-decoration: none;
-    color: #999;
+    /* color: #999; */
+    color: #bb86fc; /* Light purple for better contrast */    
 }
 a:hover {
     text-decoration: underline;
+    color: #ffcc00; /* Yellow for visibility */     
 }
 p {
     margin-top: 5px;
     margin-bottom: 5px;
     font-size: 1em;
     line-height: 1.0em;
-    color: #333;
+    /* color: #333; */
+    color: #e0e0e0; /* Light gray text */
 }
 footer {
-    border-top: 1px solid #d5d5d5;
+    /* border-top: 1px solid #d5d5d5; */
+    border-top: 1px solid #444; /* Darker border */    
     font-size: .8em;
+    color: #bbb; /* Added this for dark mode */
+
 }
 h1, h2, h3 {
     margin-top: 10px; /* Reduce space below headings */
     margin-bottom: 10px;
+    color: #ffffff; /* Dark Mode: White text for better contrast */
 }
 
 ul {
@@ -52,7 +61,8 @@ li {
 .recent-posts li {
     margin-bottom: 8px;
     margin-bottom: 15px;
-    border-top: 1px solid #ddd;
+    /* border-top: 1px solid #ddd; */
+    border-top: 1px solid #333; /* Dark Mode: Darker border */    
     /* padding-bottom: 5px; */
 }
 
@@ -60,25 +70,30 @@ li {
     font-size: 18px;
     font-weight: bold;
     text-decoration: none;
-    color: #0073e6;
+    /* color: #0073e6; */
+    color: #bb86fc; /* Dark Mode: Light purple */    
 }
 
 .recent-posts a:hover {
-    color: #005bb5;
+    /* color: #005bb5; */
+    color: #ffcc00; /* Dark Mode */    
 }
 
 .recent-posts p {
     font-size: 16px;
-    color: #555;
+    /* color: #555; */
+    color: #bdbdbd; /* Dark Mode */
     margin-top: 5px;
 }
 
 .post {
     line-height: 1.4; /* Increase for more spacing (default is usually 1.2 or 1.4) */
     margin-bottom: 5px; /* Add space after paragraphs */
+    color: #e0e0e0; /* Dark Mode : Light gray */
 }
 
 .post h1, .post h2, .post h3 {
     margin-top: 10px; /* Reduce space below headings */
     margin-bottom: 5px; /* Reduce space below headings */
+    color: #ffffff; /* Dark Mode */
 }

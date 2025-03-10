@@ -5,8 +5,18 @@ date: 2024-11-02
 excerpt: "Placeholder"
 ---
 
-### Stats 
+### Stats  
   
-### More stats
+### More stats  
   
-### Stuffs
+### Stuffs  
+
+Uncertainty in estimated effect from A/B test  
+- Compute Confidence interval  
+- More aggressive p Values  
+
+Effect Size of A/B test
+
+
+
+
