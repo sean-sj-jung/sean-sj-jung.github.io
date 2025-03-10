@@ -35,10 +35,10 @@ h1, h2, h3 {
     margin-bottom: 10px;
 }
 
-/* ul {  */
-    /* margin: 0px auto 5px;  */
-    /* font-size: 1.5em; */
-/* } */
+ul {
+    margin: 0px auto 0px; 
+    font-size: 1.5em;
+}
 
 li {
     font-size: 14px;
