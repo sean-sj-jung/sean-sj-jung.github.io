@@ -1,7 +1,6 @@
 name: sean-sj-jung
 markdown: kramdown
-kramdown:
-  math_engine: mathjax
+math_engine: mathjax
 theme: minima
 collections:
   posts:
