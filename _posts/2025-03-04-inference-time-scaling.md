@@ -1,3 +1,10 @@
+---
+layout: post
+title: "Inference-Time Scaling"
+date: 2025-03-04
+excerpt: "Inference-time scaling aka test-time compute scaling for improved reasoning"
+---
+
 ### Inference-Time Scaling (Test-Time Compute)
   
 Inference-time scaling, or test-time compute, involves enhancing the performance of LLMs by increasing computational effort during the inference phase. This approach allows models to engage in more deliberate "thinking" processes, leading to significant improvements in complex tasks such as mathematical reasoning and coding. 
