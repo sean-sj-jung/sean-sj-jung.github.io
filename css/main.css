@@ -1,11 +1,14 @@
 body {
     margin: 60px auto;
-    width: 70%;
+    max-width: 800px; /* Set max width to limit text width */
+    width: 90%; /* Allows responsiveness, keeping good margins */
     background-color: #121212; /* Dark background */
     color: #e0e0e0; /* Light text */
+    font-family: -apple-system, BlinkMacSystemFont, Ubuntu, "Open Sans", "Helvetica Neue", sans-serif;
+    line-height: 1.6; /* Improved readability for paragraphs */
 }
 nav ul, footer ul {
-    font-family:'Arial', 'Arial', 'Sans-Serif';
+    /* font-family:'Arial', 'Arial', 'Sans-Serif'; */
     padding: 0px;
     list-style: none;
     font-weight: bold;
@@ -24,10 +27,10 @@ a:hover {
     color: #ffcc00; /* Yellow for visibility */     
 }
 p {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 15px;
     font-size: 1em;
-    line-height: 1.0em;
+    line-height: 1.6em;
     /* color: #333; */
     color: #e0e0e0; /* Light gray text */
 }
@@ -39,8 +42,8 @@ footer {
 
 }
 h1, h2, h3 {
-    margin-top: 10px; /* Reduce space below headings */
-    margin-bottom: 10px;
+    margin-top: 20px; /* Reduce space below headings */
+    margin-bottom: 15px;
     color: #ffffff; /* Dark Mode: White text for better contrast */
 }
 
@@ -87,8 +90,8 @@ li {
 }
 
 .post {
-    line-height: 1.4; /* Increase for more spacing (default is usually 1.2 or 1.4) */
-    margin-bottom: 5px; /* Add space after paragraphs */
+    line-height: 1.7; /* Increase for more spacing (default is usually 1.2 or 1.4) */
+    margin-bottom: 20px; /* Add space after paragraphs */
     color: #e0e0e0; /* Dark Mode : Light gray */
 }
 
