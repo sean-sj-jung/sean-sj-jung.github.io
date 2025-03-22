@@ -8,8 +8,6 @@ excerpt: "Conditional Probability Problems"
 
 ## Difference in efficacy but not in medical domain could trick you
 
-### Question
-
 A car company produces all the cars for a country, naming them **Car X** and **Car Y**. The country's car usage is evenly split:
 
 - 50% of the population drives **Car X**.
@@ -42,6 +40,7 @@ $$ \frac{D}{150} < \frac{D}{110} $$
 
 Therefore, **Technology B** results in greater gasoline savings.
 
+---
 
 ## Classic bayesian problem
 
@@ -61,13 +60,13 @@ All three friends respond, "Yes, it's raining."
 - $$P(A|B)$$ = Probability it's raining, given all friends say it's raining.
 - $$P(B|A)$$ = Probability all three friends say it's raining, given it’s actually raining.
 
-### $$P(B|A)$$, All fiends saying it is raining when it's actually raining:
+$$P(B|A)$$, All fiends saying it is raining when it's actually raining:
 
 $$
 P(B|A) = \left(\frac{2}{3}\right)^3 = \frac{8}{27}
 $$
 
-### Bayesian law of total probability:
+Bayesian law of total probability:
 
 $$
 P(B) = P(B|A) \cdot P(A) + P(B|\text{not } A) \cdot P(\text{not } A)
@@ -88,7 +87,7 @@ $$
 P(B) = \frac{8}{27} \cdot P(A) + \frac{1}{27} \cdot (1 - P(A))
 $$
 
-### Then $$P(A|B)$$ is:
+Then $$P(A|B)$$ is:
 
 $$
 P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
@@ -105,8 +104,6 @@ Simplifying further:
 $$
 P(A|B) = \frac{8P(A)}{1 + 7P(A)}
 $$
-
-### Final Answer:
 
 If all three friends say it's raining, the probability it’s actually raining is:
 
