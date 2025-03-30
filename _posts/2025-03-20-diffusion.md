@@ -70,16 +70,16 @@ e.g. [DDPM](https://arxiv.org/abs/2006.11239)
 The DDPM paper describes a corruption process that adds a small amount of noise for every ‘timestep’.  xw
 Given $$x_{t-1}$$ for some timestep, we can get the next (slightly more noisy) version $$x_t$$ with:  
 
-$$\begin{aligned} q(\mathbf{x}_t \vert \mathbf{x}_{t-1}) = \mathcal{N}(\mathbf{x}_t; \sqrt{1 - \beta_t} \mathbf{x}_{t-1}, \beta_t\mathbf{I})$$ 
+$$\begin{aligned} q(\mathbf{x}_t \vert \mathbf{x}_{t-1}) = \mathcal{N}(\mathbf{x}_t; \sqrt{1 - \beta_t} \mathbf{x}_{t-1}, \beta_t\mathbf{I}) \end{aligned}$$ 
   
-$$\begin{aligned} q(\mathbf{x}_{1:T} \vert \mathbf{x}_0) = \prod^T{t=1} q(\mathbf{x}_t \vert \mathbf{x}_{t-1})$$  
+$$\begin{aligned} q(\mathbf{x}_{1:T} \vert \mathbf{x}_0) = \prod^T{t=1} q(\mathbf{x}_t \vert \mathbf{x}_{t-1}) \end{aligned}$$  
 
 That is, we take $$x_{t-1}$$, scale it by $$\sqrt{1 - \beta_t}$$ and add noise scaled by $$\beta_t$$. This $$\beta$$ is defined for every t according to some schedule, and determines how much noise is added per timestep. Now, we don’t necessarily want to do this operation 500 times to get $$x{500}$$ so we have another formula to get $$x_t$$ for any t given $$x_0$$:  
 
 $$\begin{aligned} q(\mathbf{x}_t \vert \mathbf{x}_0) &= \mathcal{N}(\mathbf{x}_t; \sqrt{\bar{\alpha}_t} \mathbf{x}_0, \sqrt{(1 - \bar{\alpha}_t)} \mathbf{I}) \end{aligned}$$  
 where 
-$$\begin{aligned} \bar{\alpha}_t = \prod{i=1}^T \alpha_i$$  
-$$\begin{aligned} \alpha_i = 1-\beta_i$$  
+$$\begin{aligned} \bar{\alpha}_t = \prod{i=1}^T \alpha_i \end{aligned}$$  
+$$\begin{aligned} \alpha_i = 1-\beta_i \end{aligned}$$  
 
 
 
