@@ -20,7 +20,9 @@ loss = mse_loss(model_prediction, noise) # noise as the target
 ```
 
 
-### Common Architecture of Diffusion models: UNet  
+### Common Architecture of Diffusion models: [UNet](https://arxiv.org/pdf/1505.04597)
+Note: This is a simplified example from the huggingface tutorial for representation UNet's contracting and upsampling layers.
+
 ```python
 class BasicUNet(nn.Module):
     """A minimal UNet implementation."""
@@ -65,13 +67,13 @@ class BasicUNet(nn.Module):
 ### Another important component: (Noise) Scheduler
 e.g. [DDPM](https://arxiv.org/abs/2006.11239)  
 
-The DDPM paper describes a corruption process that adds a small amount of noise for every ‘timestep’. Given $x_{t-1}$ for some timestep, we can get the next (slightly more noisy) version $x_t$ with:  
+The DDPM paper describes a corruption process that adds a small amount of noise for every ‘timestep’. Given $$x_{t-1}$$ for some timestep, we can get the next (slightly more noisy) version $$x_t$$ with:  
 
-$q(\mathbf{x}t \vert \mathbf{x}{t-1}) = \mathcal{N}(\mathbf{x}t; \sqrt{1 - \beta_t} \mathbf{x}{t-1}, \betat\mathbf{I}) \quad q(\mathbf{x}{1:T} \vert \mathbf{x}0) = \prod^T{t=1} q(\mathbf{x}t \vert \mathbf{x}{t-1})$  
+$$q(\mathbf{x}t \vert \mathbf{x}{t-1}) = \mathcal{N}(\mathbf{x}t; \sqrt{1 - \beta_t} \mathbf{x}{t-1}, \betat\mathbf{I}) \quad q(\mathbf{x}{1:T} \vert \mathbf{x}0) = \prod^T{t=1} q(\mathbf{x}t \vert \mathbf{x}{t-1})$$  
 
-That is, we take $x{t-1}$, scale it by $\sqrt{1 - \beta_t}$ and add noise scaled by $\beta_t$. This $\beta$ is defined for every t according to some schedule, and determines how much noise is added per timestep. Now, we don’t necessarily want to do this operation 500 times to get $x{500}$ so we have another formula to get $x_t$ for any t given $x_0$:  
+That is, we take $$x{t-1}$$, scale it by $$\sqrt{1 - \beta_t}$$ and add noise scaled by $$\beta_t$$. This $$\beta$$ is defined for every t according to some schedule, and determines how much noise is added per timestep. Now, we don’t necessarily want to do this operation 500 times to get $$x{500}$$ so we have another formula to get $$x_t$$ for any t given $$x_0$$:  
 
-$\begin{aligned} q(\mathbf{x}t \vert \mathbf{x}_0) &= \mathcal{N}(\mathbf{x}_t; \sqrt{\bar{\alpha}_t} \mathbf{x}_0, \sqrt{(1 - \bar{\alpha}_t)} \mathbf{I}) \end{aligned}$ where $\bar{\alpha}_t = \prod{i=1}^T \alpha_i$ and $\alpha_i = 1-\beta_i$  
+$$\begin{aligned} q(\mathbf{x}t \vert \mathbf{x}_0) &= \mathcal{N}(\mathbf{x}_t; \sqrt{\bar{\alpha}_t} \mathbf{x}_0, \sqrt{(1 - \bar{\alpha}_t)} \mathbf{I}) \end{aligned}$$ where $$\bar{\alpha}_t = \prod{i=1}^T \alpha_i$$ and $$\alpha_i = 1-\beta_i$$  
 
 
 
