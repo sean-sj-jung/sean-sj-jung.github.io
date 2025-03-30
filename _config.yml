@@ -1,9 +1,9 @@
-name: sean-sj-jung
 markdown: kramdown
-math_engine: mathjax
-theme: minima
-collections:
-  posts:
-    output: true
-highlighter: rouge
-
+kramdown:
+  math_engine: mathjax
+  math_engine_opts:
+    preview: false
+  input: GFM
+  math:
+    enabled: true
+    syntax: default
