@@ -107,6 +107,7 @@ $$
 - p-value = 0.064 > 0.05 → Fail to reject $$ H_0 $$
 - Interpretation: Not enough evidence to conclude the teaching method changes scores.
 
+---
 
 #### $$\alpha$$ and Type I Error
   - Significance level  
