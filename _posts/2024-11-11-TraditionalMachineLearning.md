@@ -4,11 +4,13 @@ title: "Traditional Machine Learning Methods"
 date: 2024-11-11
 excerpt: "SVM, Decision Tree, Bagging and Boosting, Clustering and so on"
 ---
-
+  
+---  
+  
 ### Bias in Machine Learning
 
 #### Type of bias
-- Sampling/selection bias, sample dist. != population dist.
+- Sampling/selection bias, sample distribution \ne population distribution
 - Label bias, human prejudices or systemic errors in label, e.g. survey
 - Measurement bias, errors while measruing or recording
 - Historical bias, bias in data itself such as social inequalities
@@ -17,11 +19,32 @@ excerpt: "SVM, Decision Tree, Bagging and Boosting, Clustering and so on"
 - If class imbalance, then oversample/undersample/stratify sample
 - Augmentation with synthetic data
 - Training with regularization and weighted loss
-
+  
 ---
+  
+## Resampling Methods
+Resampling is used for model validation and performance estimation.
 
+- **Cross-Validation**:
+  - $$ k $$-fold cross-validation:
+  
+    $$
+    \text{Error} = \frac{1}{k} \sum_{i=1}^{k} \text{Test Error}_i
+    $$
+
+  - Leave-One-Out Cross-Validation (LOOCV):
+
+    $$
+    \text{Error} = \frac{1}{n} \sum_{i=1}^{n} \text{Test Error}_i
+    $$
+
+- **Bootstrap**:
+  - Sample with replacement and estimate uncertainty in statistics.
+  
+---
+  
 ## Support Vector Machine (SVM) and Kernel Trick
-SVM finds the optimal **hyperplane** that maximizes the margin between two classes.
+SVM finds the optimal hyperplane that maximizes the margin between two classes.
 
 ### **Linear SVM**
 For a linearly separable dataset, the decision boundary is given by:
@@ -31,17 +54,17 @@ w \cdot x + b = 0
 $$
 
 where:
--  w  is the weight vector,
--  x  is the input feature vector,
--  b  is the bias term.
+- $$w$$ is the weight vector,
+- $$x$$ is the input feature vector,
+- $$b$$ is the bias term.
 
-The margin \( M \) is:
+The margin $$ M $$ is:
 
 $$
 M = \frac{2}{||w||}
 $$
 
-SVM optimizes \( w \) and \( b \) by solving:
+SVM optimizes $$ w $$ and $$ b $$ by solving:
 
 $$
 \min_{w, b} \frac{1}{2} ||w||^2
@@ -53,7 +76,7 @@ $$
 y_i (w \cdot x_i + b) \geq 1, \quad \forall i
 $$
 
-### **Kernel Trick**
+### Kernel Trick
 When data is not linearly separable, a kernel function \( K(x, y) \) is used to map it into a higher-dimensional space:
 
 $$
@@ -61,8 +84,8 @@ K(x, y) = \phi(x)^T \phi(y)
 $$
 
 Examples of kernels:
-- **Linear Kernel**: \( K(x, y) = x^T y \)
-- **Polynomial Kernel**: \( K(x, y) = (1 + x^T y)^p \)
+- **Linear Kernel**: $$ K(x, y) = x^T y $$
+- **Polynomial Kernel**: $$ K(x, y) = (1 + x^T y)^p $$
 - **Gaussian (RBF) Kernel**:
 
   $$
@@ -74,7 +97,9 @@ Examples of kernels:
   $$
   K(x, y) = \tanh(b_0 x^T y + b_1)
   $$
-
+  
+---
+  
 ## Decision Tree
 Decision trees use **recursive partitioning** to split data based on the largest **information gain**.
 
@@ -98,6 +123,9 @@ Decision trees use **recursive partitioning** to split data based on the largest
 
 ### **Pruning**
 Decision trees tend to **overfit**, so **pruning** is used to reduce complexity.
+  
+---
+  
 
 ## Random Forest
 Random forests improve decision trees by training multiple trees on different subsets of data.
@@ -115,30 +143,13 @@ Bagging is an ensemble method that improves stability by training multiple model
    - **Regression**: Average of all models.
    - **Classification**: Majority vote.
 
-## Resampling Methods
-Resampling is used for model validation and performance estimation.
-
-- **Cross-Validation**:
-  - \( k \)-fold cross-validation:
+---
   
-    $$
-    \text{Error} = \frac{1}{k} \sum_{i=1}^{k} \text{Test Error}_i
-    $$
-
-  - Leave-One-Out Cross-Validation (LOOCV):
-
-    $$
-    \text{Error} = \frac{1}{n} \sum_{i=1}^{n} \text{Test Error}_i
-    $$
-
-- **Bootstrap**:
-  - Sample with replacement and estimate uncertainty in statistics.
-
 ## Adaboost (Adaptive Boosting)
 Adaboost combines weak classifiers to create a strong classifier by **reweighting misclassified samples**.
 
-1. Assign weights \( w_i \) to each training sample.
-2. Train a weak classifier \( h_t(x) \).
+1. Assign weights $$ w_i $$ to each training sample.
+2. Train a weak classifier $$ h_t(x) $$.
 3. Compute classifier error:
 
    $$
@@ -163,6 +174,8 @@ Adaboost combines weak classifiers to create a strong classifier by **reweightin
    H(x) = \text{sign} \left( \sum_{t=1}^{T} \alpha_t h_t(x) \right)
    $$
 
+---
+
 ## Clustering
 Clustering is an **unsupervised learning** method that groups similar data points.
 
@@ -182,7 +195,9 @@ Clustering is an **unsupervised learning** method that groups similar data point
 
 - **Density-Based Clustering**:
   - **DBSCAN**: Groups points based on density.
-
+  
+---
+  
 ## Entropy
 Entropy measures **uncertainty** in a probability distribution:
 
@@ -192,7 +207,9 @@ $$
 
 - **High entropy**: Data is **impure** or **uncertain**.
 - **Low entropy**: Data is **pure** or **certain**.
-
+  
+---
+  
 ## Lazy Learning vs. Eager Learning
 ### **Lazy Learning**
 - **Delays** processing until a query is received.
@@ -205,4 +222,3 @@ $$
 - **Examples**: Decision Trees, Neural Networks, SVM.
 - **Pros**: Faster inference.
 - **Cons**: May generalize poorly to new data.
-
