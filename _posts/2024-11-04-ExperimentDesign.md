@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Experiment Design"
-date: 2024-11-02
+date: 2024-11-04
 excerpt: "Interview Style"
 ---
 

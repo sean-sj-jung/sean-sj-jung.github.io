@@ -5,6 +5,21 @@ date: 2024-11-11
 excerpt: "SVM, Decision Tree, Bagging and Boosting, Clustering and so on"
 ---
 
+### Bias in Machine Learning
+
+#### Type of bias
+- Sampling/selection bias, sample dist. != population dist.
+- Label bias, human prejudices or systemic errors in label, e.g. survey
+- Measurement bias, errors while measruing or recording
+- Historical bias, bias in data itself such as social inequalities
+
+#### Mitigate the bias
+- If class imbalance, then oversample/undersample/stratify sample
+- Augmentation with synthetic data
+- Training with regularization and weighted loss
+
+---
+
 ## Support Vector Machine (SVM) and Kernel Trick
 SVM finds the optimal **hyperplane** that maximizes the margin between two classes.
 
@@ -16,9 +31,9 @@ w \cdot x + b = 0
 $$
 
 where:
-- \( w \) is the weight vector,
-- \( x \) is the input feature vector,
-- \( b \) is the bias term.
+-  w  is the weight vector,
+-  x  is the input feature vector,
+-  b  is the bias term.
 
 The margin \( M \) is:
 
