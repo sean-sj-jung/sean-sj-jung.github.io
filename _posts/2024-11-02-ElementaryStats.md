@@ -2,7 +2,7 @@
 layout: post
 title: "Elementary Stats"
 date: 2024-11-02
-excerpt: "Stats/Applied Stats 101 Equivalent Material"
+excerpt: "Probabiltiy and Statistics 101 Equivalent Material"
 ---
 
 ### Law of Large Numbers
@@ -191,12 +191,14 @@ $$
 ---
 
 ### Confusion Matrix
-- **Precision**: 
+- **Precision**: True Positive to All Positive Predicted  
+
   $$
   \frac{\text{True Positives}}{\text{True Positives} + \text{False Positives}}
   $$  
     
-- **Recall**: 
+- **Recall**: True Positive to All Actual Positives  
+
   $$
   \frac{\text{True Positives}}{\text{True Positives} + \text{False Negatives}}
   $$

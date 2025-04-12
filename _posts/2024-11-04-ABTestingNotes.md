@@ -7,10 +7,14 @@ excerpt: "A/A, common mistakes and other interview questions"
 
 ## Some notes for A/B Testing
 
+---
+
 ### A/A Testing 
 
 This is where you split your users into two groups, but both groups receive the same experience. 
 It's used to validate your testing setup and ensure your randomization and measurement systems work correctly before running actual experiments
+
+---
 
 ### Common Mistake in A/B Testing
 
@@ -24,9 +28,13 @@ It's used to validate your testing setup and ensure your randomization and measu
 
 3. Retention of the change 
 
+---
+
 ### Measuring uncertainty in A/B Testing
 
 Compute Confidence Interval or Standard Error
+
+---
 
 ### Testing two dependent samples
 
@@ -38,6 +46,3 @@ Examples:
 Tests :
 - Paired t-test  
 - Wilcoxon Signed-Rank Test, non-parametric test without normality assumption  
-  
----
-

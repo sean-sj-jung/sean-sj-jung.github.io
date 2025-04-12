@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Interesting Math Problems"
-date: 2024-11-01
+date: 2024-11-02
 excerpt: "D20, Monty Hall and so on"
 ---
 
@@ -91,8 +91,6 @@ So:
 - With 2 rolls left, threshold is 13.
 - Roll: if result ≥ 13 → stop, else → roll again.
 
----
-
 ### Python Implementation
 
 ```python
@@ -128,11 +126,11 @@ Monty then gives you a choice:
 **Stick** with your original choice (Door 1), or  
 **Switch** to the remaining unopened door (Door 2).
 
-## What's the best strategy?
+### What's the best strategy?
 Intuition says it’s 50/50, but the correct answer is:  
 You double your chances of winning by switching.
 
-## 📘 Bayes’ Theorem
+### Bayes’ Theorem
 
 $$
 P(A \mid B) = \frac{P(B \mid A) \cdot P(A)}{P(B)}
@@ -200,7 +198,7 @@ $$
 
 
 ---
-## The Birthday Problem.  
+## The Same Birthday  
 Find the smallest integer $$ n $$ such that the probability of at least two people sharing the same birthday is at least 50%.
 
 ### Assumptions:
@@ -210,11 +208,12 @@ Find the smallest integer $$ n $$ such that the probability of at least two peop
 
 ### Solution:
 
-Let’s denote:
+Let’s denote:  
 - $$ P(n) $$: the probability that all $$ n $$ people have different birthdays.
 - So, $$ 1 - P(n) $$: the probability that at least two people share a birthday.
 
-We want:
+We want:  
+
 $$
 1 - P(n) \geq 0.5 \quad \Rightarrow \quad P(n) \leq 0.5
 $$
@@ -226,7 +225,7 @@ $$
 
 1. Iteratively compute the probability:  
 
-| \( n \) | \( P(n) \) (no shared birthday) |
+| $$ n $$ | $$ P(n) $$ (no shared birthday) |
 |--------|----------------------------------|
 | 1      | 1.000000                         |
 | 2      | 0.997260                         |
@@ -237,33 +236,38 @@ $$
 | 15     | 0.747099                         |
 | 20     | 0.588560                         |
 | 22     | 0.524305                         |
-| 23     | 0.492703 ⬅️ Less than 0.5 ✅ |
+| 23     | 0.492703                         |
 
 2. Logarithmic approximation
 
-log of $$ P(n) $$:
+log of $$ P(n) $$:  
+
 $$
 \ln P(n) = \sum_{k=0}^{n-1} \ln\left(1 - \frac{k}{365} \right)
 $$
 
 Approximate the sum using Taylor expansion:
 
-#### Taylor expansion of \( \ln(1 - x) \):
+#### Taylor expansion of $$ \ln(1 - x) $$:  
+
 $$
 \ln(1 - x) \approx -x - \frac{x^2}{2} - \frac{x^3}{3} - \cdots
 $$
 
-For small $$ x $$:
+For small $$ x $$:  
+
 $$
 \ln(1 - x) \approx -x
 $$
 
-Therefore:
+Therefore:  
+
 $$
 \ln\left(1 - \frac{k}{365} \right) \approx -\frac{k}{365}
 $$
 
-Hence:
+Hence:  
+
 $$
 \ln P(n) \approx -\sum_{k=0}^{n-1} \frac{k}{365} = -\frac{1}{365} \sum_{k=0}^{n-1} k = -\frac{1}{365} \cdot \frac{(n-1)n}{2}
 $$

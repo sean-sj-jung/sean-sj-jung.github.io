@@ -101,7 +101,12 @@ li {
     color: #ffffff; /* Dark Mode */
 }
 
-.MathJax_Display {
+/* .MathJax_Display {
     text-align: left !important;
     margin: 1em 0 !important;
+} */
+
+mjx-container[display="true"] {
+    justify-content: flex-start !important;
+    text-align: left !important;
 }
