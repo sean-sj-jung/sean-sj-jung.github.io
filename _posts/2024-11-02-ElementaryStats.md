@@ -41,81 +41,70 @@ $$
 #### p-value  
 The probability of observing results as extreme or more extreme than the current sample statistic, under the assumption that the null hypothesis is true.
   
-#### 📊 Example 1: One-sample **Z-test** (Known population variance)
+#### Example 1: One-sample **Z-test** (Known population variance)
 
-#### 🎯 Setup:
 A company claims that their battery lasts **10 hours on average**. You think it’s **less**.
 
-- \( H_0 \): \( \mu = 10 \)
-- \( H_1 \): \( \mu < 10 \) (left-tailed test)
+- $$ H_0 $$: $$ \mu = 10 $$
+- $$ H_1 $$: $$ \mu < 10 $$ (left-tailed test)
 
 You test 36 batteries and get:
-- Sample mean \( \bar{x} = 9.5 \)
-- Population standard deviation \( \sigma = 1.8 \)
-- Sample size \( n = 36 \)
-
----
-
-#### 🧮 Step-by-Step:
+- Sample mean $$ \bar{x} = 9.5 $$
+- Population standard deviation $$ \sigma = 1.8 $$
+- Sample size $$ n = 36 $$
 
 #### 1. Compute test statistic (Z-score):
 
-\[
+$$
 Z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{9.5 - 10}{1.8 / \sqrt{36}} = \frac{-0.5}{0.3} = -1.67
-\]
+$$
 
 #### 2. Find p-value from Z-table:
 
-Since this is a **left-tailed test**, the p-value is:
+Since this is a left-tailed test, the p-value is:
 
-\[
+$$
 P(Z < -1.67) \approx 0.0475
-\]
+$$
 
-#### 3. Compare to \( \alpha = 0.05 \):
-- p-value = 0.0475 < 0.05 → **Reject \( H_0 \)**
-- Interpretation: The sample gives **statistically significant evidence** that the battery lasts **less than 10 hours**
+#### 3. Compare to $$ \alpha = 0.05 $$:
+- p-value = 0.0475 < 0.05 → Reject $$ H_0 $$
+- Interpretation: The sample gives statistically significant evidence that the battery lasts less than 10 hours
 
----
 
-#### 📊 Example 2: One-sample **t-test** (Unknown population variance)
+#### Example 2: One-sample **t-test** (Unknown population variance)
 
-#### 🎯 Setup:
 You're testing whether a new teaching method affects test scores. Normally, average test score is 75.
 
 You collect:
 - Sample of 16 students
-- Sample mean: \( \bar{x} = 78 \)
-- Sample standard deviation: \( s = 6 \)
+- Sample mean: $$ \bar{x} = 78 $$
+- Sample standard deviation: $$ s = 6 $$
 
 You want to test:
-- \( H_0 \): \( \mu = 75 \)
-- \( H_1 \): \( \mu \ne 75 \) (two-tailed)
-
----
-
-#### 🧮 Step-by-Step:
+- $$ H_0 $$: $$ \mu = 75 $$
+- $$ H_1 $$: $$ \mu \ne 75 $$ (two-tailed)
 
 #### 1. Compute test statistic (t-score):
 
-\[
+$$
 t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{78 - 75}{6 / \sqrt{16}} = \frac{3}{1.5} = 2.0
-\]
+$$
 
-#### 2. Degrees of freedom: \( df = n - 1 = 15 \)
+#### 2. Degrees of freedom: $$ df = n - 1 = 15 $$
 
 #### 3. Find p-value using t-distribution:
 - For a two-tailed test:  
-  \( \text{p-value} = 2 \times P(t > 2.0 \text{ with } df = 15) \)
+  $$ \text{p-value} = 2 \times P(t > 2.0 \text{ with } df = 15) $$
 - From t-tables or calculator:
-  \( P(t > 2.0) \approx 0.032 \)
+  $$ P(t > 2.0) \approx 0.032 $$
 
-\[
+$$
 \text{p-value} \approx 2 \times 0.032 = 0.064
-\]
+$$
 
-#### 4. Compare to \( \alpha = 0.05 \):
-- p-value = 0.064 > 0.05 → **Fail to reject \( H_0 \)**
+#### 4. Compare to $$ \alpha = 0.05 $$:
+- p-value = 0.064 > 0.05 → Fail to reject $$ H_0 $$
 - Interpretation: Not enough evidence to conclude the teaching method changes scores.
 
 
