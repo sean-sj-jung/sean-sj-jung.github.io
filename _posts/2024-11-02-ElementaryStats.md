@@ -40,7 +40,7 @@ $$
 ### Hypothesis Testing and p-value
 - **p-value**:  
 The probability of observing results as extreme or more extreme than the current sample statistic, under the assumption that the null hypothesis is true.
-- $$\alpha$$  
+-  <div style="text-align: left;">$$\alpha$$</div>  
   - Significance level  
   - Probability of making a Type I Error (False Positive)  
     - Rejecting a true null hypothesis  
@@ -48,7 +48,7 @@ The probability of observing results as extreme or more extreme than the current
   - If p-value < $$ \alpha $$, reject $$ H_0 $$ 
   - To reduce Type 1 Error, reduce the value of $$ \alpha $$  
 
-- $$\beta$$  
+-  <div style="text-align: left;">$$\beta$$</div>  
   - Probability of making a Type II Error (False Negative)
     - Fail to reject the null hypothesis when the alternative is true
     - e.g. Fail to approve an effective drug
@@ -63,7 +63,7 @@ The probability of observing results as extreme or more extreme than the current
     - Increase $$ \alpha $$
 
 
-### \beta and Power Analysis
+### $$\beta$$ and Power Analysis
 Power analysis can be used to determines the minimum sample size required for an experiment based on:
 - **Significance level $$\alpha$$**  
 - **Statistical power $$1-\beta$$**  
@@ -75,7 +75,7 @@ n \approx \left( \frac{z_{1 - \alpha/2} + z_{1 - \beta}}{d} \right)^2
 $$
 
 Where:
-- $$ d = \frac{|\mu_1 - \mu_2|}{\sigma} $$ is the standardized effect size (Cohen’s d)
+- $$ d = \frac{\mu_1 - \mu_2}{\sigma} $$ is the standardized effect size (Cohen’s d)
 - $$ z_{1 - \alpha/2} = 1.96 $$,  $$z_{1 - \beta} = 0.84$$ → $$ n \approx \left(\frac{2.8}{d}\right)^2 $$
 
 Thus, for moderate effect size $$ d = 0.5 $$, we need:
@@ -83,7 +83,8 @@ Thus, for moderate effect size $$ d = 0.5 $$, we need:
 $$
 n \approx \left(\frac{2.8}{0.5}\right)^2 = 31.36 \approx 32 \text{ samples per group}
 $$
-  where $$ s^2 $$ is an estimate of the population variance and $$ d = \mu_1 - \mu_2 $$.  
+  
+where $$ s^2 $$ is an estimate of the population variance and $$ d = \mu_1 - \mu_2 $$.  
 
 ---
 
@@ -135,7 +136,7 @@ Examples:
 Tests :
 - Paired t-test  
 - Wilcoxon Signed-Rank Test, non-parametric test without normality assumption  
-
+  
 ---
 
 ### Bayes' Theorem
