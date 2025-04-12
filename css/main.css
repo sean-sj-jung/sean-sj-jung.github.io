@@ -100,3 +100,8 @@ li {
     margin-bottom: 5px; /* Reduce space below headings */
     color: #ffffff; /* Dark Mode */
 }
+
+.MathJax_Display {
+    text-align: left !important;
+    margin: 1em 0 !important;
+}

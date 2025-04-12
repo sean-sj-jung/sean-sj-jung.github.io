@@ -40,7 +40,7 @@ $$
 ### Hypothesis Testing and p-value
 - **p-value**:  
 The probability of observing results as extreme or more extreme than the current sample statistic, under the assumption that the null hypothesis is true.
--  <div style="text-align: left;">$$\alpha$$</div>  
+-  $$\alpha$$ and Type I Error
   - Significance level  
   - Probability of making a Type I Error (False Positive)  
     - Rejecting a true null hypothesis  
@@ -48,7 +48,7 @@ The probability of observing results as extreme or more extreme than the current
   - If p-value < $$ \alpha $$, reject $$ H_0 $$ 
   - To reduce Type 1 Error, reduce the value of $$ \alpha $$  
 
--  <div style="text-align: left;">$$\beta$$</div>  
+-  $$\beta$$ and Type II Error
   - Probability of making a Type II Error (False Negative)
     - Fail to reject the null hypothesis when the alternative is true
     - e.g. Fail to approve an effective drug
@@ -103,7 +103,7 @@ where $$ s^2 $$ is an estimate of the population variance and $$ d = \mu_1 - \mu
 
 ---
 
-## Some notes regarding A/B Testing
+## Some notes for A/B Testing
 
 ### A/A Testing 
 
