@@ -26,6 +26,8 @@ Given an i.i.d. random variable $$ X $$:
   P\left(\lim_{n \to \infty} \bar{X}_n = \mu\right) = 1
   $$
 
+---
+
 ### Central Limit Theorem
 For a large enough sample size $$ n $$, the sample mean of i.i.d. random variables approximates a normal distribution:
 
@@ -33,10 +35,12 @@ $$
 \frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} \to N(0,1) \text{ as } n \to \infty
 $$
 
+---
+
 ### Hypothesis Testing and p-value
-#### - **p-value**:  
+- **p-value**:  
 The probability of observing results as extreme or more extreme than the current sample statistic, under the assumption that the null hypothesis is true.
-#### - $$\alpha$$  
+- $$\alpha$$  
   - Significance level  
   - Probability of making a Type I Error (False Positive)  
     - Rejecting a true null hypothesis  
@@ -44,19 +48,19 @@ The probability of observing results as extreme or more extreme than the current
   - If p-value < $$ \alpha $$, reject $$ H_0 $$ 
   - To reduce Type 1 Error, reduce the value of $$ \alpha $$  
 
-#### - $$\beta$$  
-- Probability of making a Type II Error (False Negative)
-  - Fail to reject the null hypothesis when the alternative is true
-  - e.g. Fail to approve an effective drug
-- The power of test  
-  $$
-  \text{Power} = 1 - \beta
-  $$    
-  - $$ 1 - \beta $$ is the probability of correctly rejecting $$ H_0 $$ when it is false.  
-- To reduce the chance of Type II Error (or increase the power of test):  
-  - Increase sample size
-  - Design the study to detect a larger effect size
-  - Increase $$ \alpha $$
+- $$\beta$$  
+  - Probability of making a Type II Error (False Negative)
+    - Fail to reject the null hypothesis when the alternative is true
+    - e.g. Fail to approve an effective drug
+  - The power of test  
+    $$
+    \text{Power} = 1 - \beta
+    $$    
+    - $$ 1 - \beta $$ is the probability of correctly rejecting $$ H_0 $$ when it is false.  
+  - To reduce the chance of Type II Error (or increase the power of test):  
+    - Increase sample size
+    - Design the study to detect a larger effect size
+    - Increase $$ \alpha $$
 
 
 ### \beta and Power Analysis
@@ -81,25 +85,58 @@ n \approx \left(\frac{2.8}{0.5}\right)^2 = 31.36 \approx 32 \text{ samples per g
 $$
   where $$ s^2 $$ is an estimate of the population variance and $$ d = \mu_1 - \mu_2 $$.  
 
-
-### Confusion Matrix
-- **Precision**: 
-  $$
-  \frac{\text{True Positives}}{\text{True Positives} + \text{False Positives}}
-  $$  
-    
-- **Recall**: 
-  $$
-  \frac{\text{True Positives}}{\text{True Positives} + \text{False Negatives}}
-  $$
+---
 
 ### Confidence Interval  
-An estimated range of an unknown parameter for a given confidence level 
+- An estimated range of an unknown parameter for a given confidence level 
+  $$
+  \bar{X} \pm Z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}
+  $$
+- Plain-English Explanation:
+  - A confidence interval gives you a range of values that you can be reasonably sure contains the true answer.
+    - "Let's say you get an average of 10 from samples you have. Then we're 95% confident the true average to be between 9 and 11"
+    - "In other words, we believe the real answer falls somewhere in this range and we are 95% sure".
+- It does NOT mean "95% chance the true value is in the interval"
+  - 95% refers to the method; If we repeat the same experiment many times, 95% of the resulting intervals would include the true value.
+    - The interval changes for each experiment.
 
-$$
-\bar{X} \pm Z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}
-$$
+---
 
+## Some notes regarding A/B Testing
+
+### A/A Testing 
+
+This is where you split your users into two groups, but both groups receive the same experience. 
+It's used to validate your testing setup and ensure your randomization and measurement systems work correctly before running actual experiments
+
+### Common Mistake in A/B Testing
+
+1. Difference in distribution between population and sample
+	caused by ramping up plans, multiple tests in parallel, segmentation by attributes subject to change (e.g. location) 
+
+2. Violation of SUTVA (Stable Unit Treatment Value Assumption) aka spillover 
+	The outcome of treatment only depends on the subject’s status, and is unaffected by another subject’s status
+		e.g. social media (a user’s behavior affects another), Two-sided or shared resources (Uber, Lyft)
+			Insta - Lower minimum fee of delivery - limit shopper / discourage users in control group etc 
+
+3. Retention of the change 
+
+### Measuring uncertainty in A/B Testing
+
+Compute Confidence Interval or Standard Error
+
+### Testing two dependent samples
+
+Examples:  
+- Pre-post experiments: Measuring the same subjects before and after a treatment (e.g., users before and after a UI change).  
+- Matched samples: Each participant in one group has a closely matched participant in another group based on key characteristics.  
+- Repeated measures: Same participants tested multiple times under different conditions.  
+
+Tests :
+- Paired t-test  
+- Wilcoxon Signed-Rank Test, non-parametric test without normality assumption  
+
+---
 
 ### Bayes' Theorem
 Computes conditional probability:
@@ -117,6 +154,20 @@ $$
 - Updates beliefs based on new evidence.
 - Used in Bayesian inference to derive posterior probabilities.
   
+---
+
+### Confusion Matrix
+- **Precision**: 
+  $$
+  \frac{\text{True Positives}}{\text{True Positives} + \text{False Positives}}
+  $$  
+    
+- **Recall**: 
+  $$
+  \frac{\text{True Positives}}{\text{True Positives} + \text{False Negatives}}
+  $$
+
+---
 
 ### Logistic Regression 
 - Used for binary classification.
@@ -188,36 +239,3 @@ Consider a predictor:
   \text{Total Error} = \text{Bias}^2 + \text{Variance} + \text{Irreducible Error}
   $$
   
-## Some notes regarding A/B Testing
-
-### A/A Testing 
-
-This is where you split your users into two groups, but both groups receive the same experience. 
-It's used to validate your testing setup and ensure your randomization and measurement systems work correctly before running actual experiments
-
-### Common Mistake in A/B Testing
-
-1. Difference in distribution between population and sample
-	caused by ramping up plans, multiple tests in parallel, segmentation by attributes subject to change (e.g. location) 
-
-2. Violation of SUTVA (Stable Unit Treatment Value Assumption) aka spillover 
-	The outcome of treatment only depends on the subject’s status, and is unaffected by another subject’s status
-		e.g. social media (a user’s behavior affects another), Two-sided or shared resources (Uber, Lyft)
-			Insta - Lower minimum fee of delivery - limit shopper / discourage users in control group etc 
-
-3. Retention of the change 
-
-### Measuring uncertainty in A/B Testing
-
-Compute Confidence Interval or Standard Error
-
-### Testing two dependent samples
-
-Examples:  
-- Pre-post experiments: Measuring the same subjects before and after a treatment (e.g., users before and after a UI change).  
-- Matched samples: Each participant in one group has a closely matched participant in another group based on key characteristics.  
-- Repeated measures: Same participants tested multiple times under different conditions.  
-
-Tests :
-- Paired t-test  
-- Wilcoxon Signed-Rank Test, non-parametric test without normality assumption  
