@@ -176,6 +176,67 @@ Adaboost combines weak classifiers to create a strong classifier by **reweightin
 
 ---
 
+## Gradient Boosting
+
+### Key Components
+Gradient boosting involves three core elements:
+
+1. **Loss Function**: Differentiable, problem-specific (e.g., squared error for regression, logarithmic loss for classification).
+2. **Weak Learner**: Decision trees, specifically regression trees, are commonly used.
+3. **Additive Model**: Trees are sequentially added to minimize the loss function.
+
+### How Gradient Boosting Works
+
+#### Loss Function
+- Must be differentiable; flexible to handle various problems.
+- Supports standard functions (squared error, logarithmic loss) and custom-defined ones.
+
+#### Weak Learner
+- Decision trees that predict real values (regression trees).
+- Trees built greedily based on purity metrics (Gini) or direct loss minimization.
+- Usually constrained to be "weak" through depth, splits, or leaf nodes.
+
+#### Additive Model
+- Trees added sequentially, each attempting to minimize residual errors of existing trees.
+- Utilizes **functional gradient descent**:
+  - Instead of adjusting parameters, a new tree is added that best reduces residual errors.
+  - Iterative addition continues until reaching a fixed number of trees or until the loss no longer improves.
+
+### Improving Basic Gradient Boosting
+
+Gradient boosting can easily overfit; regularization techniques are crucial:
+
+#### 1. Tree Constraints
+- Balance complexity and number of trees:
+  - **Number of Trees**: Add trees until performance stops improving.
+  - **Tree Depth**: Typically 4-8 levels.
+  - **Node/Leaf Constraints**: Restricting number of nodes or leaves.
+  - **Minimum Observations per Split**: Ensures sufficient data for meaningful splits.
+  - **Minimum Improvement in Loss**: Only significant improvements trigger new splits.
+
+#### 2. Weighted Updates (Shrinkage)
+- Each new tree's contribution weighted by learning rate (**shrinkage**).
+- Smaller learning rates (0.1 to 0.3 or lower) require more trees but improve generalization.
+
+#### 3. Stochastic Gradient Boosting
+- Uses subsampling of data to construct each tree, reducing correlation among trees.
+- Variations include:
+  - Row subsampling before tree creation.
+  - Column subsampling before tree creation or split consideration.
+- Typically uses 50% of the data or columns to effectively reduce overfitting.
+
+#### 4. Penalized Gradient Boosting
+- Regularizes leaf node predictions to smooth weights and prevent overfitting.
+- Common regularization methods:
+  - **L1 regularization** (absolute weights penalty).
+  - **L2 regularization** (squared weights penalty).
+
+### Practical Considerations
+- Balance between learning rate and number of trees is critical.
+- Aggressive subsampling and constraints significantly improve model generalization.
+
+---
+
 ## Clustering
 Clustering is an **unsupervised learning** method that groups similar data points.
 

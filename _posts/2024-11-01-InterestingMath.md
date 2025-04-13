@@ -271,3 +271,198 @@ Hence:
 $$
 \ln P(n) \approx -\sum_{k=0}^{n-1} \frac{k}{365} = -\frac{1}{365} \sum_{k=0}^{n-1} k = -\frac{1}{365} \cdot \frac{(n-1)n}{2}
 $$
+
+
+---
+
+## Expected Payoff of Two Dices
+
+Let’s denote the outcomes of the 30‑sided die as \(a\) (with values 1 to 30) and the outcomes of the 20‑sided die as \(b\) (with values 1 to 20). Since the dice are fair and independent, the joint probability for any ordered pair \((a, b)\) is
+
+\[
+P(a, b) = \frac{1}{30} \times \frac{1}{20} = \frac{1}{600}.
+\]
+
+The rules of the game are:
+- If \(a > b\), you win \(a\) dollars.
+- If \(a \le b\) (i.e. \(b \ge a\)), you lose \(b\) dollars.
+
+Thus, the payoff \(X(a,b)\) is given by
+
+\[
+X(a, b) =
+\begin{cases}
+a, & \text{if } a > b,\\[1mm]
+-b, & \text{if } a \le b.
+\end{cases}
+\]
+
+The overall expected payoff \(E\) is
+
+\[
+E = \sum_{a=1}^{30} \sum_{b=1}^{20} \frac{1}{600}\, X(a, b).
+\]
+
+Because the behavior of the payoff function changes when \(a\) passes 20 (since die \(b\) can only roll up to 20), it is useful to break the calculation into two parts.
+
+---
+
+## Case 1: When \(1 \le a \le 20\)
+
+For a fixed \(a\) in this range:
+- For \(b < a\) (that is, \(b = 1, 2, \dots, a-1\)), we win \(a\) dollars on each outcome. There are \(a-1\) such outcomes.
+- For \(b \ge a\) (that is, \(b = a, a+1, \dots, 20\)), we lose \(b\) dollars. 
+
+Thus, for a given \(a\) (with \(1 \le a \le 20\)), the total payoff contribution for that \(a\) is
+
+\[
+\text{Contribution}(a) = a \cdot (a-1) - \sum_{b=a}^{20} b.
+\]
+
+The sum \(\sum_{b=a}^{20} b\) can be written in closed form as
+
+\[
+\sum_{b=a}^{20} b = \frac{(20+a)(21-a)}{2}.
+\]
+
+So the contribution for a given \(a\) is
+
+\[
+\text{Contribution}(a) = a(a-1) - \frac{(20+a)(21-a)}{2}.
+\]
+
+Let’s denote the total from these outcomes as \(S_1\):
+
+\[
+S_1 = \sum_{a=1}^{20} \left[ a(a-1) - \frac{(20+a)(21-a)}{2} \right].
+\]
+
+### Simplifying the Expression
+
+First, notice that
+\[
+a(a-1) = a^2 - a.
+\]
+
+We have
+
+\[
+S_1 = \sum_{a=1}^{20} \left[ a^2 - a - \frac{(20+a)(21-a)}{2} \right].
+\]
+
+Let’s simplify the term \((20+a)(21-a)\):
+
+\[
+(20+a)(21-a) = 20\cdot21 + 20(-a) + a\cdot21 - a^2 = 420 - 20a + 21a - a^2 = 420 + a - a^2.
+\]
+
+Thus,
+\[
+\frac{(20+a)(21-a)}{2} = \frac{420 + a - a^2}{2}.
+\]
+
+Substitute back in:
+
+\[
+S_1 = \sum_{a=1}^{20} \left[ a^2 - a - \frac{420 + a - a^2}{2} \right].
+\]
+
+Combine terms by writing \(a^2 - a\) as \(\frac{2a^2 - 2a}{2}\):
+
+\[
+S_1 = \sum_{a=1}^{20} \left[ \frac{2a^2 - 2a - 420 - a + a^2}{2} \right]
+= \sum_{a=1}^{20} \left[ \frac{3a^2 - 3a - 420}{2} \right].
+\]
+
+Factor out \(\frac{3}{2}\):
+
+\[
+S_1 = \frac{3}{2} \sum_{a=1}^{20} \left[ a^2 - a \right] - 210 \times  ( \text{since } 420/2 = 210 \text{ and there are 20 terms} ).
+\]
+
+Now, calculate the needed sums:
+- \(\sum_{a=1}^{20} a = \frac{20 \cdot 21}{2} = 210,\)
+- \(\sum_{a=1}^{20} a^2 = \frac{20 \cdot 21 \cdot 41}{6} = 2870.\)
+
+Thus,
+
+\[
+\sum_{a=1}^{20} (a^2 - a) = 2870 - 210 = 2660.
+\]
+
+So,
+
+\[
+S_1 = \frac{3}{2}(2660) - 210 \cdot 20.
+\]
+
+Compute each part:
+- \(\frac{3}{2}(2660) = \frac{7980}{2} = 3990,\)
+- \(210 \cdot 20 = 4200.\)
+
+Thus,
+
+\[
+S_1 = 3990 - 4200 = -210.
+\]
+
+---
+
+## Case 2: When \(21 \le a \le 30\)
+
+For \(a\) from 21 to 30, every possible \(b\) (which ranges from 1 to 20) satisfies \(b < a\) because the maximum value for \(b\) is 20. Hence, in every outcome we win \(a\) dollars.
+
+For a given \(a\) in this range, the total win is
+
+\[
+20 \times a.
+\]
+
+Denote the sum over this range as \(S_2\):
+
+\[
+S_2 = \sum_{a=21}^{30} 20a = 20 \sum_{a=21}^{30} a.
+\]
+
+Now, calculate \(\sum_{a=21}^{30} a\). This can be done by subtracting the sum of the first 20 integers from the sum of the first 30 integers:
+
+\[
+\sum_{a=1}^{30} a = \frac{30 \cdot 31}{2} = 465,
+\]
+\[
+\sum_{a=1}^{20} a = 210.
+\]
+
+Thus,
+
+\[
+\sum_{a=21}^{30} a = 465 - 210 = 255.
+\]
+
+So,
+
+\[
+S_2 = 20 \times 255 = 5100.
+\]
+
+---
+
+## Putting It All Together
+
+The total sum of all payoffs over the 600 equally likely outcomes is
+
+\[
+S = S_1 + S_2 = (-210) + 5100 = 4890.
+\]
+
+Thus, the expected payoff is
+
+\[
+E = \frac{4890}{600} = \frac{4890 \div 30}{600 \div 30} = \frac{163}{20} = 8.15.
+\]
+
+---
+
+## Final Answer
+
+The expected payoff is \(\frac{163}{20}\), which is approximately **\$8.15**.
