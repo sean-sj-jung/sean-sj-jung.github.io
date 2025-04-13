@@ -22,10 +22,10 @@ excerpt: "SVM, Decision Tree, Bagging and Boosting, Clustering and so on"
   
 ---
   
-## Resampling Methods
+### Resampling Methods
 Resampling is used for model validation and performance estimation.
 
-- **Cross-Validation**:
+#### **Cross-Validation**:
   - $$ k $$-fold cross-validation:
   
     $$
@@ -38,9 +38,97 @@ Resampling is used for model validation and performance estimation.
     \text{Error} = \frac{1}{n} \sum_{i=1}^{n} \text{Test Error}_i
     $$
 
-- **Bootstrap**:
-  - Sample with replacement and estimate uncertainty in statistics.
-  
+#### **Bootstrap**:  
+The bootstrap is a resampling technique that repeatedly draws samples with replacement from the original dataset to estimate the sampling distribution of a statistic (e.g., mean, accuracy, standard error). It is useful to understand the variability of a model's performance, compute confidence interval of metrics such as accuracy or RMSE.  
+
+- Uncertainty Estimation  
+  - Evaluates how sensitive the model is to different subsets of data.
+  - Provides confidence intervals for model performance metrics (e.g., accuracy, AUC, MSE).
+  - Helps quantify the variability of a model’s predictions.
+
+- Alternative to Analytical Methods
+  - Useful when theoretical formulas for standard error or confidence intervals are complex or unknown.
+  - Particularly helpful with non-parametric models or small datasets.
+
+- Out-of-Bag (OOB) Evaluation
+  - In ensemble methods like Random Forests, bootstrap samples are used for training while OOB samples are used for validation without needing a separate test set.
+    - Each tree is trained on a bootstrap sample.
+    - For each data, validation is computed only using trees where the data point was not seen during training.
+    - These predictions are aggregated to produce an OOB prediction.
+      - It is effectively a cross-validation.
+
+---
+
+### How It Works
+1. Draw **B** bootstrap samples (e.g., 1,000), each the same size as the original dataset, by sampling with replacement.
+2. Train the model or compute a statistic (e.g., accuracy) on each sample.
+3. Use the distribution of these B results to:
+   - Estimate the mean (e.g., average accuracy)
+   - Compute confidence intervals
+   - Assess bias and variance
+
+### 📌 **Example Use Cases**
+- Estimating 95% CI for test accuracy of a classifier
+- Calculating feature importance uncertainty in Random Forests
+- Comparing two models more rigorously by examining the distribution of the difference in their performance
+
+#### **Limitations**
+- Can be computationally expensive for large models
+- Assumes the original dataset is representative of the population
+- May not perform well with highly dependent or time series data
+
+---
+
+### ML Evaluation
+
+
+Model evaluation is the process of assessing how well a machine learning model performs on unseen data. It helps determine the model’s predictive power, generalization ability, and suitability for deployment.
+
+---
+
+#### Key Objectives
+- Measure **accuracy**, **robustness**, and **bias-variance trade-off**
+- Prevent **overfitting** or **underfitting**
+- Compare **alternative models or algorithms**
+- Select optimal **hyperparameters**
+
+#### Evaluation Metrics
+
+#### Classification
+- **Accuracy**: $$ \frac{\text{Correct Predictions}}{\text{Total Predictions}} $$
+- **Precision**: $$ \frac{\text{True Positives}}{\text{True Positives + False Positives}} $$
+- **Recall (Sensitivity)**: $$ \frac{\text{True Positives}}{\text{True Positives + False Negatives}} $$
+- **F1 Score**: Harmonic mean of precision and recall
+- **ROC-AUC**: Area under the receiver operating characteristic curve
+
+#### Regression
+- **Mean Absolute Error (MAE)**: $$ \frac{1}{n} \sum |y_i - \hat{y}_i| $$
+- **Mean Squared Error (MSE)**: $$ \frac{1}{n} \sum (y_i - \hat{y}_i)^2 $$
+- **Root Mean Squared Error (RMSE)**: $$ \sqrt{\text{MSE}} $$
+- **R-squared ($R^2$)**: Proportion of variance explained
+
+#### **Validation Strategies**
+- **Train/Test Split**: Simple, fast, risk of high variance
+- **k-Fold Cross Validation**: Partition data into *k* folds; rotate train/test roles
+- **Stratified Sampling**: Maintain class proportions in each fold (important for imbalanced datasets)
+- **Leave-One-Out CV (LOOCV)**: Extreme case of k-fold (where k = n)
+
+#### **Overfitting & Underfitting**
+- **Underfitting**: High bias, poor training and test performance
+- **Overfitting**: Low training error, high test error
+- Use **learning curves**, **regularization**, and **cross-validation** to monitor and mitigate
+
+#### **Evaluation Beyond Metrics**
+- **Confusion Matrix**: Visual breakdown of predictions vs. actuals
+- **Calibration Curve**: Checks predicted probabilities vs. actual outcomes
+- **Lift and Gain Charts**: For assessing performance in marketing/risk models
+- **Business Metrics**: ROI, conversion rate, cost savings, etc.
+
+### ✅ **Best Practices**
+- Always evaluate on **held-out or unseen test data**
+- Monitor both **performance** and **fairness** (e.g., across demographic groups)
+- Use **multiple metrics** to get a holistic view
+
 ---
   
 ## Support Vector Machine (SVM) and Kernel Trick

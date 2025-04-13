@@ -174,3 +174,85 @@ Even with a highly accurate test, the probability of actually having the disease
 Most positive test results are actually **false positives**.
 
 --- 
+
+## Two-Child Problem
+
+A family has two children. Given that at least one of them is a girl, what is the probability that both children are girls?
+
+In probabilistic terms, we're looking for:  
+
+$$
+P(\text{Both are girls} \mid \text{At least one is a girl})
+$$
+
+by Bayes' Theorem,
+
+
+$$
+P(\text{Both are girls} \mid \text{At least one is a girl}) = \frac{P(\text{At least one is a girl} \mid \text{Both are girls}) \cdot P(\text{Both are girls})}{P(\text{At least one is a girl})}
+$$
+
+1. $$ P(\text{Both are girls}) $$
+
+   Assuming each child is independently a boy or a girl with equal probability (0.5), the probability that both are girls is:
+
+   $$
+   P(\text{Both are girls}) = 0.5 \times 0.5 = 0.25
+   $$
+
+2. $$ P(\text{At least one is a girl} \mid \text{Both are girls}) $$
+
+   If both children are girls, then it's certain that at least one is a girl:
+
+   $$
+   P(\text{At least one is a girl} \mid \text{Both are girls}) = 1
+   $$
+
+3. $$ P(\text{At least one is a girl}) $$
+
+   The total probability of having at least one girl in two children can be calculated by subtracting the probability of having no girls (i.e., both boys) from 1:
+
+   $$
+   P(\text{At least one is a girl}) = 1 - P(\text{Both are boys}) = 1 - (0.5 \times 0.5) = 1 - 0.25 = 0.75
+   $$
+
+Hence,
+
+$$
+P(\text{Both are girls} \mid \text{At least one is a girl}) = \frac{1 \times 0.25}{0.75} = \frac{0.25}{0.75} = \frac{1}{3}
+$$
+
+---
+
+### Disease Diagnosis
+
+> **Problem:**  
+> A rare disease affects 0.1% of the population. A diagnostic test correctly identifies 99% of people who have the disease and has a false positive rate of 5%. Given that someone tests positive, what's the probability they actually have the disease?
+
+**Solution:**
+
+Define events:
+- $$ D $$: having the disease
+- $$ + $$: testing positive
+  
+$$
+P(D) = 0.001, \quad P(\neg D) = 0.999
+$$
+  
+$$
+P(+|D) = 0.99, \quad P(+|\neg D) = 0.05
+$$
+  
+Using Bayes' theorem:
+  
+$$
+P(D|+) = \frac{P(+|D)P(D)}{P(+|D)P(D) + P(+|\neg D)P(\neg D)}
+$$
+  
+Plugging in the numbers:
+  
+$$
+P(D|+) = \frac{0.99 \times 0.001}{0.99 \times 0.001 + 0.05 \times 0.999} \approx 0.0194
+$$
+  
+---
