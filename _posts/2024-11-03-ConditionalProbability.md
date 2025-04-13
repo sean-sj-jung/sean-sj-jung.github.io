@@ -109,3 +109,68 @@ If all three friends say it's raining, the probability it’s actually raining i
 
 $$\frac{8P(A)}{1 + 7P(A)}$$
 
+---
+
+Here is the disease diagnostic example from the PDF, rewritten in Markdown with equations using `$$`:
+
+---
+
+### Disease Diagnostic Test and Bayesian Updating
+
+Suppose that 1 in 10,000 people (0.01%) has a particular disease. A diagnostic test for the disease has:
+
+- **99% sensitivity**:  
+  $$P(A \mid B) = 0.99$$  
+  (i.e., if a person has the disease, the test returns positive with probability 0.99)
+
+- **99% specificity**:  
+  $$P(A \mid B^c) = 0.01$$  
+  (i.e., if a person does not have the disease, the test returns positive with probability 0.01)
+
+What is $$ P(B \mid A) $$
+
+Let:
+- $$B$$ = event that a person has the disease  
+- $$B^c$$ = event that a person does not have the disease  
+- $$A$$ = event that the test result is positive
+
+We are given:
+- $$P(B) = 0.0001$$
+- $$P(B^c) = 0.9999$$
+- $$P(A \mid B) = 0.99$$
+- $$P(A \mid B^c) = 0.01$$
+
+#### Compute the marginal probability of a positive test result
+
+Using the law of total probability:
+
+$$
+P(A) = P(A \mid B)P(B) + P(A \mid B^c)P(B^c)
+$$
+
+$$
+P(A) = 0.99 \times 0.0001 + 0.01 \times 0.9999 = 0.010098
+$$
+
+#### Step 2: Compute the posterior probability of having the disease given a positive test result
+
+Using Bayes' theorem:
+
+$$
+P(B \mid A) = \frac{P(A \mid B)P(B)}{P(A)}
+$$
+
+$$
+P(B \mid A) = \frac{0.99 \times 0.0001}{0.010098} \approx 0.0098
+$$
+
+#### Interpretation
+
+Even with a highly accurate test, the probability of actually having the disease given a positive result is still only about 0.98%. This is because:
+
+- The disease is very rare, and
+- There is a non-zero false positive rate
+
+Most positive test results are actually **false positives**.
+
+--- 
