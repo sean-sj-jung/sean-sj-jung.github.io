@@ -1,47 +1,49 @@
 <!DOCTYPE html>
-	<html>
-		<head>
-			<title>{{ page.title }}</title>
-			<meta charset="UTF-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<link rel="stylesheet" type="text/css" href="/css/main.css">
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
-			<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> 
-		</head>		 
-		<body>
-			<nav>
-	    		<ul>
-	        		<li><a href="/">Home</a></li>
-	        		<!-- <li><a href="/cv.html">CV</a></li> -->
-	        		<li><a href="/posts">Posts</a></li>
-	    		</ul>
-			</nav>
-			<div class="container">
-			
-			{{ content }}
-			
-			</div><!-- /.container -->
-			<footer>
-	    		<ul>
-	        		<li><a href="https://www.linkedin.com/in/sean-sj-jung/">LinkedIn</a></li>
-					<li><a href="https://github.com/sean-sj-jung">Github</a></li>
-					<li><a href="mailto:sean.sj.jung@gmail.com">Email</a></li>
-				</ul>
-			</footer>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-			<script>hljs.highlightAll();</script>
-			<script type="text/javascript">
-				window.MathJax = {
-					tex: {
-						inlineMath: [['$', '$'], ['\\(', '\\)']],  // Support for $...$ and \( ... \) inline math
-						displayMath: [['$$', '$$'], ['\\[', '\\]']]  // Support for $$ ... $$ and \[ ... \] block math
-					}
-				};
-			</script>
-			<script type="text/javascript" async
-			  src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-			<script type="text/javascript" async
-			  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-			
-		</body>
-	</html>
+<html>
+  <head>
+    <title>{{ page.title }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <!-- MathJax Configuration: including left-alignment for display math -->
+    <script type="text/javascript">
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        chtml: {
+          displayAlign: 'left'
+        }
+      };
+    </script>
+    <!-- Polyfill for MathJax -->
+    <script type="text/javascript" async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <!-- MathJax Library -->
+    <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <!-- <li><a href="/cv.html">CV</a></li> -->
+        <li><a href="/posts">Posts</a></li>
+      </ul>
+    </nav>
+    <div class="container">
+      {{ content }}
+    </div><!-- /.container -->
+    <footer>
+      <ul>
+        <li><a href="https://www.linkedin.com/in/sean-sj-jung/">LinkedIn</a></li>
+        <li><a href="https://github.com/sean-sj-jung">Github</a></li>
+        <li><a href="mailto:sean.sj.jung@gmail.com">Email</a></li>
+      </ul>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>
