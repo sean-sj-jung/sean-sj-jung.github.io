@@ -37,6 +37,14 @@ $$
 
 ---
 
+### Conditional Probability
+
+$$
+P(A|B) = \frac{P(A \cap B )}{P(B)}
+$$  
+
+---
+
 ### Bayes' Theorem
 Computes conditional probability:
 
