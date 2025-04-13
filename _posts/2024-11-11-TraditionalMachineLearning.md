@@ -25,7 +25,7 @@ excerpt: "SVM, Decision Tree, Bagging and Boosting, Clustering and so on"
 ### Resampling Methods
 Resampling is used for model validation and performance estimation.
 
-#### **Cross-Validation**:
+### **Cross-Validation**:
   - $$ k $$-fold cross-validation:
   
     $$
@@ -38,7 +38,7 @@ Resampling is used for model validation and performance estimation.
     \text{Error} = \frac{1}{n} \sum_{i=1}^{n} \text{Test Error}_i
     $$
 
-#### **Bootstrap**:  
+### **Bootstrap**:  
 The bootstrap is a resampling technique that repeatedly draws samples with replacement from the original dataset to estimate the sampling distribution of a statistic (e.g., mean, accuracy, standard error). It is useful to understand the variability of a model's performance, compute confidence interval of metrics such as accuracy or RMSE.  
 
 - Uncertainty Estimation  
@@ -57,9 +57,7 @@ The bootstrap is a resampling technique that repeatedly draws samples with repla
     - These predictions are aggregated to produce an OOB prediction.
       - It is effectively a cross-validation.
 
----
-
-### How It Works
+#### How It Works
 1. Draw **B** bootstrap samples (e.g., 1,000), each the same size as the original dataset, by sampling with replacement.
 2. Train the model or compute a statistic (e.g., accuracy) on each sample.
 3. Use the distribution of these B results to:
@@ -67,12 +65,12 @@ The bootstrap is a resampling technique that repeatedly draws samples with repla
    - Compute confidence intervals
    - Assess bias and variance
 
-### 📌 **Example Use Cases**
+#### Example Use Cases
 - Estimating 95% CI for test accuracy of a classifier
 - Calculating feature importance uncertainty in Random Forests
 - Comparing two models more rigorously by examining the distribution of the difference in their performance
 
-#### **Limitations**
+#### Limitations
 - Can be computationally expensive for large models
 - Assumes the original dataset is representative of the population
 - May not perform well with highly dependent or time series data
@@ -81,10 +79,7 @@ The bootstrap is a resampling technique that repeatedly draws samples with repla
 
 ### ML Evaluation
 
-
 Model evaluation is the process of assessing how well a machine learning model performs on unseen data. It helps determine the model’s predictive power, generalization ability, and suitability for deployment.
-
----
 
 #### Key Objectives
 - Measure **accuracy**, **robustness**, and **bias-variance trade-off**
@@ -128,6 +123,31 @@ Model evaluation is the process of assessing how well a machine learning model p
 - Always evaluate on **held-out or unseen test data**
 - Monitor both **performance** and **fairness** (e.g., across demographic groups)
 - Use **multiple metrics** to get a holistic view
+
+---
+
+### Model Choice
+Criteria to decide which model to train? 
+
+1. Data
+  - Data Type : Tabluar vs Text vs Image vs Time-series vs ...
+  - Data Size : If Small: simple models
+  - Data Characteristics : e.g. Imbalanced data, missin data etc
+
+2. Model Complexity
+  - Bias-Variance trade off
+
+3. Task type
+  - Classification, Regression, Clustering, Recommendation, Time-series etc
+  - e.g. Logistic Regression for Classification, Linear Regression for Regression
+
+4. Interpretability requirements
+  - High : Linear models, Decision tree
+  - Mid : Gradient boosting with SHAP
+  - Low : Neural network
+
+Others may include Latency/Inference Constraints, Training Cost/Scalability, Regulatory  
+
 
 ---
   
