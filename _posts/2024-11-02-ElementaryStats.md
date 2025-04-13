@@ -43,6 +43,14 @@ $$
 P(A|B) = \frac{P(A \cap B )}{P(B)}
 $$  
 
+### Law of Total Probability
+  
+Given B is a set of mutually exclusive and collectively exhaustive events,  
+  
+$$
+P(A) = \sum_{n}P(A|B_n)P(B_n)
+$$
+  
 ---
 
 ### Bayes' Theorem
