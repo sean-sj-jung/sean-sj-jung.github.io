@@ -101,7 +101,7 @@ li {
     color: #ffffff; /* Dark Mode */
 }
 
-mjx-container[display="true"] {
+/* mjx-container[display="true"] {
     justify-content: flex-start !important;
     text-align: left !important;
-}
+} */
