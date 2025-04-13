@@ -445,11 +445,8 @@ So,
 S_2 = 20 \times 255 = 5100.
 \]
 
----
 
-## Putting It All Together
-
-The total sum of all payoffs over the 600 equally likely outcomes is
+Therefore, the total sum of all payoffs over the 600 equally likely outcomes is
 
 \[
 S = S_1 + S_2 = (-210) + 5100 = 4890.
@@ -460,9 +457,3 @@ Thus, the expected payoff is
 \[
 E = \frac{4890}{600} = \frac{4890 \div 30}{600 \div 30} = \frac{163}{20} = 8.15.
 \]
-
----
-
-## Final Answer
-
-The expected payoff is \(\frac{163}{20}\), which is approximately **\$8.15**.
