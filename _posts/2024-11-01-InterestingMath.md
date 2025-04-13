@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Interesting Math Problems"
-date: 2024-11-02
+date: 2024-11-01
 excerpt: "D20, Monty Hall and so on"
 ---
 

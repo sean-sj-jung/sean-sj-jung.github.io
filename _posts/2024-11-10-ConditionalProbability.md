@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Conditional Probability Problems"
-date: 2024-11-03
+date: 2024-11-10
 excerpt: "Example problems"
 ---
 

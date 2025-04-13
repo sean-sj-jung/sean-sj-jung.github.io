@@ -21,32 +21,24 @@ But:
 
 Let $$ T $$ be a test statistic, and let $$ t_{\text{obs}} $$ be its observed value from the sample.  
 
-#### One-sided (e.g., $$ H_1: \mu > \mu_0 $$):
+- One-sided (e.g., $$ H_1: \mu > \mu_0 $$): $$ \text{p-value} = P_{H_0}(T \geq t_{\text{obs}}) $$
+- One-sided (e.g., $$ H_1: \mu < \mu_0 $$): $$ \text{p-value} = P_{H_0}(T \leq t_{\text{obs}}) $$
+- Two-sided (e.g., $$ H_1: \mu \neq \mu_0 $$):
+  - If the distribution of $$ T $$ under $$ H_0 $$ is symmetric:
+  $$
+  \text{p-value} = 2 \cdot P_{H_0}(T \geq |t_{\text{obs}}|)
+  $$
 
-$$
-\text{p-value} = P_{H_0}(T \geq t_{\text{obs}})
-$$
+  Or more generally:
 
-#### One-sided (e.g., $$ H_1: \mu < \mu_0 $$):
+  $$
+  \text{p-value} = P_{H_0}(|T| \geq |t_{\text{obs}}|)
+  $$  
 
-$$
-\text{p-value} = P_{H_0}(T \leq t_{\text{obs}})
-$$
+---
 
-#### Two-sided (e.g., $$ H_1: \mu \neq \mu_0 $$):
+#### Example
 
-If the distribution of $$ T $$ under $$ H_0 $$ is symmetric:
-
-$$
-\text{p-value} = 2 \cdot P_{H_0}(T \geq |t_{\text{obs}}|)
-$$
-
-Or more generally:
-
-$$
-\text{p-value} = P_{H_0}(|T| \geq |t_{\text{obs}}|)
-$$  
-  
 Known population mean : $$ \mu\_0 = 170 $$  
 Known population stdev : $$ \sigma = 10 $$  
 Sample size : $$ n = 25 $$  
@@ -56,16 +48,19 @@ $$
 H_0 : \mu = 170, H_a : \mu != 170 
 $$  
   
-$$
-Z = X\_bar - \mu\_0 / \sigma/\sqrt(n) = (173-170) / 10/\sqrt(25) = 3/2 = 1.5
-$$
+$$\begin{align}
+Z &= X\_bar - \mu\_0 / \sigma/\sqrt(n) \\
+&= (173-170) / 10/\sqrt(25) \\
+&= 3/2 
+&= 1.5
+$$\end{align}
 
 $$
 P (Z >= 1.5) = 1- N(1.5) ~= 1-0.9332 = 0.0668
 $$
 
 $$
-p_value = 2 * 0.0668 = 0.1336
+p-value = 2 * 0.0668 = 0.1336
 $$
 
 At significance level of 0.05, fail to reject the null hypothesis (p=0.1336 >0.05).

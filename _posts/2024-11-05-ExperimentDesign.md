@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Experiment Design"
-date: 2024-11-04
+date: 2024-11-05
 excerpt: "Interview Style"
 ---
 
@@ -16,6 +16,7 @@ What is an A/B test?
 ---
 
 ### Key Elements in Experiment Design
+
 - **Randomization:** ensures groups are comparable, reduces confounding bias.
 - **Unit of assignment:** user, session, cookie, etc.
 - **Primary metric:** define success criteria upfront.
@@ -31,6 +32,7 @@ What is an A/B test?
 ---
 
 ### Real-World Concerns
+
 What if your treatment group is larger than control?  
 - Could indicate allocation bias. Re-randomize or apply weighting if analysis is already done.
 

@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Some Notes for A/B Testing"
-date: 2024-11-04
+title: "Additional Notes for A/B Testing"
+date: 2024-11-06
 excerpt: "A/A, common mistakes and other interview questions"
 ---
 
