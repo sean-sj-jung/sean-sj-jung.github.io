@@ -48,12 +48,14 @@ $$
 H_0 : \mu = 170, H_a : \mu != 170 
 $$  
   
-$$\begin{align}
+$$
+\begin{align}
 Z &= X\_bar - \mu\_0 / \sigma/\sqrt(n) \\
 &= (173-170) / 10/\sqrt(25) \\
 &= 3/2 
 &= 1.5
-$$\end{align}
+\end{align}
+$$
 
 $$
 P (Z >= 1.5) = 1- N(1.5) ~= 1-0.9332 = 0.0668

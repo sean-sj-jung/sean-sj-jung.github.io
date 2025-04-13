@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Elementary Stats"
-date: 2024-11-02
-excerpt: "Probabiltiy and Statistics 101 Equivalent Material"
+title: "Hypothesis Testing"
+date: 2024-11-03
+excerpt: "Hypothesis testing since it is so popular in interview"
 ---
 
 ## Hypothesis Testing and p-value
