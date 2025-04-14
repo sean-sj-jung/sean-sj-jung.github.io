@@ -56,10 +56,10 @@ All three friends respond, "Yes, it's raining."
 - $$P(A \vert B)$$ = Probability it's raining, given all friends say it's raining.
 - $$P(B \vert A)$$ = Probability all three friends say it's raining, given it’s actually raining.
 
-$$P(B|A)$$, All fiends saying it is raining when it's actually raining:
+$$P(B \vert A)$$, All fiends saying it is raining when it's actually raining:
 
 $$
-P(B|A) = \left(\frac{2}{3}\right)^3 = \frac{8}{27}
+P(B \vert A) = \left(\frac{2}{3}\right)^3 = \frac{8}{27}
 $$
 
 Bayesian law of total probability:
