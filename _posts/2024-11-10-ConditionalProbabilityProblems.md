@@ -20,8 +20,6 @@ Two new technologies have been discovered to reduce gasoline usage:
 
 **Which technology should be implemented to achieve the greatest gasoline savings for the entire country?**
 
----
-
 For an average commute distance per car, $$D$$,
 
 The total gasoline used $$G$$ is:
@@ -52,8 +50,6 @@ You called 3 friends independently ask each if it's raining. Each friend has:
 All three friends respond, "Yes, it's raining."
 
 **What is the probability that it’s actually raining?**
-
----
 
 - $$P(A)$$ = Probability that it is actually raining.
 - $$P(B)$$ = Probability that all three friends say it's raining.
@@ -108,10 +104,6 @@ $$
 If all three friends say it's raining, the probability it’s actually raining is:
 
 $$\frac{8P(A)}{1 + 7P(A)}$$
-
----
-
-Here is the disease diagnostic example from the PDF, rewritten in Markdown with equations using `$$`:
 
 ---
 

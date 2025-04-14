@@ -5,7 +5,7 @@ date: 2024-11-04
 excerpt: "Compute p-value from scratch"
 ---
 
-## Hypothesis testing
+## Hypothesis testing Example Problems
 
 Two sided tests are twice the one sided tests if:
 - The test statistics under the null is symmetrically distributed
@@ -39,10 +39,10 @@ Let $$ T $$ be a test statistic, and let $$ t_{\text{obs}} $$ be its observed va
 
 #### Example
 
-Known population mean : $$ \mu\_0 = 170 $$  
+Known population mean : $$ \mu_0 = 170 $$  
 Known population stdev : $$ \sigma = 10 $$  
 Sample size : $$ n = 25 $$  
-Sample mean : $$ x_bar $$ = 173  
+Sample mean : $$ \bar{X} $$ = 173  
 
 $$ 
 H_0 : \mu = 170, H_a : \mu != 170 
@@ -50,8 +50,8 @@ $$
   
 $$
 \begin{align}
-Z &= X\_bar - \mu\_0 / \sigma/\sqrt(n) \\
-&= (173-170) / 10/\sqrt(25) \\
+Z &= \_bar{X} - \mu_0 / \sigma/\sqrt(n) \\
+&= (173-170) / (10/\sqrt{25}) \\
 &= 3/2 \\
 &= 1.5
 \end{align}
@@ -61,7 +61,7 @@ And
 
 $$
 \begin{align}
-P (Z >= 1.5) &= 1- N(1.5) \\
+P (Z \ge 1.5) &= 1- N(1.5) \\
 &~= 1-0.9332 \\
 &= 0.0668
 \end{align}
