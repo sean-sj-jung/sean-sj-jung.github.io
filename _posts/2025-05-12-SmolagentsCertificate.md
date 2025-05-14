@@ -1,16 +1,19 @@
 ---
 layout: post
-title: "Smolagents Final Project for Certificate"
+title: "Smolagents Agent Course Hands-on Project"
 date: 2025-05-12
-excerpt: "Smolagents for GAIA benchmark"
+excerpt: "Building a Smolagent for the GAIA Benchmark"
 ---
 
-This [repo](https://github.com/sean-sj-jung/smolagents_gaia_run) contains the code for smolagents and its testing for [Hugging Face's Agent Course Hands-on](https://huggingface.co/learn/agents-course/en/unit4/hands-on)  
+### Building a General AI Assistant for Multimodal Tasks
 
-### Building General AI Asisstant to solve varying multimodal tasks 
-The goal is to build an AI agent that is capable of solving tasks that require processing video, audio, image or other form of text, and some time require reasoning skills such as playing chess
+This [repository](https://github.com/sean-sj-jung/smolagents_gaia_run) contains the code and implementation details for a Smolagent developed as part of the [Hugging Face Agents Course Hands-on Project](https://huggingface.co/learn/agents-course/en/unit4/hands-on).
 
-  
-### Reference
-[Hugging Face Agents Course](https://huggingface.co/learn/agents-course/en/unit0/introduction)  
-[GAIA Benchmark](https://arxiv.org/abs/2311.12983)
+The objective is to build an AI agent capable of handling diverse tasks that involve multimodal input—such as video, audio, images, and text—and sometimes require advanced reasoning, including playing games like chess.
+
+The agent is evaluated using a subset of the [GAIA benchmark](https://arxiv.org/abs/2311.12983), which provides a standardized framework for testing general AI capabilities across modalities.
+
+### References
+
+- [Hugging Face Agents Course](https://huggingface.co/learn/agents-course/en/unit0/introduction)  
+- [GAIA Benchmark Paper](https://arxiv.org/abs/2311.12983)
