@@ -2,7 +2,7 @@
 layout: post
 title: "Experiment Design"
 date: 2024-11-05
-excerpt: "Interview Style"
+excerpt: "Interview Type of Questions"
 ---
 
 ## A/B Testing Basics
