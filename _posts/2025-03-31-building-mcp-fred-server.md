@@ -13,7 +13,5 @@ is unnecessary so here are useful links instead.
 
 ### Building a MCP Server for FRED API  
 [MyRepository](https://github.com/sean-sj-jung/mcp_fred)
-- Currently WIP.  
-- Connection with Claude Desktop is confirmed.  
-- Next step is to polish outputs, add more APIs and so on.  
+- Tested with Claude Desktop.  
   
