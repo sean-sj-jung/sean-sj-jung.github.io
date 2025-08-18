@@ -11,9 +11,9 @@ excerpt: "Claude Code Tips and Best Practices"
 - Discovery: "Make a cool visualization for me. I'm just getting started."
 - Implement features in a web app with Playwright: "Add a button here"
 - Spawn subagents to perform multiple tasks simultaneously; merge them using git worktrees.
-- Write tests and debug.
-- Refactor code.
-
+- Write tests and debug.  
+- Refactor code.  
+  
 1. /init and CLAUDE.md
 
    > Effectively a memory file.  
