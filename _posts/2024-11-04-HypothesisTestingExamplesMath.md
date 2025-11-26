@@ -45,12 +45,12 @@ Sample size : $$ n = 25 $$
 Sample mean : $$ \bar{X} $$ = 173  
 
 $$ 
-H_0 : \mu = 170, H_a : \mu != 170 
+H_0 : \mu = 170, H_a : \mu \neq 170 
 $$  
   
 $$
 \begin{align}
-Z &= \_bar{X} - \mu_0 / \sigma/\sqrt(n) \\
+Z &= \bar{X} - \mu_0 / \sigma/\sqrt(n) \\
 &= (173-170) / (10/\sqrt{25}) \\
 &= 3/2 \\
 &= 1.5
@@ -104,6 +104,5 @@ $$
 - This follows a **chi-squared distribution**, not normal.
 
 #### Ordinal or non-normal data → Use rank-based or non-parametric tests
-- Wilcoxon signed-rank test Mann-Whitney U Kruskal-Wallis, etc.
-- These use test statistics that follow specialized distributions, not normal.
+- Wilcoxon signed-rank, Mann-Whitney U, Kruskal-Wallis, etc
 

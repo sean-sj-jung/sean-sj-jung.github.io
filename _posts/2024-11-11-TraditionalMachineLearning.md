@@ -98,9 +98,13 @@ Model evaluation is the process of assessing how well a machine learning model p
 
 #### Regression
 - **Mean Absolute Error (MAE)**: $$ \frac{1}{n} \sum |y_i - \hat{y}_i| $$
+    - Robust to outliers  
 - **Mean Squared Error (MSE)**: $$ \frac{1}{n} \sum (y_i - \hat{y}_i)^2 $$
+    - Penalizes large error  
 - **Root Mean Squared Error (RMSE)**: $$ \sqrt{\text{MSE}} $$
+    - Same units as target; easy to interpret  
 - **R-squared ($R^2$)**: Proportion of variance explained
+    - Linear model only  
 
 #### **Validation Strategies**
 - **Train/Test Split**: Simple, fast, risk of high variance

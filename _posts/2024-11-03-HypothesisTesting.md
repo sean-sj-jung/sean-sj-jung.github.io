@@ -85,7 +85,8 @@ $$
 ---
 
 #### $$\alpha$$ and Type I Error
-  - Significance level  
+  - aka Significance Level  
+  - False Positive Rate (FP / FP + TN)
   - Probability of making a Type I Error (False Positive)  
     - Rejecting a true null hypothesis  
     - e.g. Approve ineffective drug  
@@ -93,21 +94,22 @@ $$
   - To reduce Type 1 Error, reduce the value of $$ \alpha $$  
 
 #### $$\beta$$ and Type II Error
-  - Probability of making a Type II Error (False Negative)
+  - $$\beta$$, Probability of making a Type II Error (False Negative)
     - Fail to reject the null hypothesis when the alternative is true
     - e.g. Fail to approve an effective drug
-  - The power of test  
+  - $$1 - \beta$$, The power of test  
     $$
-    \text{Power} = 1 - \beta
+    \text{Power} = 1 - \beta = True Positive Rate (= TP / TP + FN)
     $$    
     - $$ 1 - \beta $$ is the probability of correctly rejecting $$ H_0 $$ when it is false.  
+    - e.g. If a test has power of 80%, it means that if a person has the condition, there is an 80% chance they will test positive (True Positive).  Conversely, there is a 20% chance of incorrectly return negative (False Negative), which is the Type II error ($$\beta$$)  
   - To reduce the chance of Type II Error (or increase the power of test):  
     - Increase sample size
     - Design the study to detect a larger effect size
     - Increase $$ \alpha $$
 
 
-### $$\beta$$ and Power Analysis
+#### $$\beta$$ and Power Analysis
 Power analysis can be used to determines the minimum sample size required for an experiment based on:
 - **Significance level $$\alpha$$**  
 - **Statistical power $$1-\beta$$**  
@@ -146,3 +148,48 @@ where $$ s^2 $$ is an estimate of the population variance and $$ d = \mu_1 - \mu
     - The interval changes for each experiment.
 
 ---
+
+### Common Tests  
+
+Consider:  
+	-	Outcome type: continuous, binary, count, categorical.  
+	-	Number of groups: 1, 2, or >2.  
+	-	Paired vs independent samples.  
+	-	Assumptions: normality, equal variances, etc.  
+
+1. Mean comparison (continuous outcome)
+	1.	One-sample t-test
+	  -	Scenario: Compare mean of one sample to a known value \mu_0.
+	  -	Example: “Is average session length different from 5 minutes?”
+	2.	Two-sample t-test (independent samples)
+	  -	Scenario: Compare means of two independent groups.
+	  -	Example: “Do treatment and control have different average revenue?”
+	  -	Variants:
+	    -	Equal variances: pooled t-test.
+	    -	Unequal variances: Welch’s t-test (safer default).
+	3.	Paired t-test
+	  -	Scenario: Same subjects measured twice (before/after), or matched pairs.
+	  -	Example: “Did the UI change increase click-through for the same users?”
+	4.	ANOVA (Analysis of Variance)
+	  -	Scenario: Compare means across more than two groups.
+	  -	Example: “Does banner color (red/blue/green) change average CTR?”
+	  -	Null: all group means equal.  
+  
+2. Categorical outcomes (counts)
+	1.	Chi-square test 
+	  -	Scenario: Whether the observed counts are different from expected
+      A. Chi-square goodness-of-fit
+	      -	Question: “Do these observed category frequencies match a specified distribution?”
+	      -	Example null: “Customers choose A/B/C equally (1/3 each).”
+	    B. Chi-square test of independence (contingency table)
+	      -	Question: “Are two categorical variables independent?”
+	      -	Example null: “Device type and conversion (buy / not buy) are independent.”  
+  
+3. Nonparametric tests  
+	1.	Mann–Whitney U test
+	  -	Alternative to two-sample t-test when data not normal / heavy outliers.
+	  -	Compares distributions of two independent samples.
+	2.	Wilcoxon signed-rank test
+	  -	Alternative to paired t-test when differences not normal.
+	3.	Kruskal–Wallis test
+	  -	Nonparametric alternative to one-way ANOVA.
