@@ -5,6 +5,51 @@ date: 2024-11-06
 excerpt: "Common SQL patterns"
 ---
 
+
+---
+### Short Notes
+
+#### When doing division, use:
+
+```sql
+NULLIF(denominator, 0)
+```
+to ensure the denominator is non-zero  
+  
+
+#### RANK vs DENSE_RANK
+
+RANK = 1, 1, 3  
+DENSE_RANK = 1, 1, 2  
+  
+  
+#### CASE WHEN ELSE END
+
+```sql
+CASE WHEN x THEN y ELSE 0 END
+```
+don’t forget END 
+  
+  
+#### CAST Intentionally to avoid integer truncation
+
+CTR is less than 0 so ```1 ELSE 0``` will mostly return 0 (except for when CTR=1)  
+  
+```sql
+SELECT
+  app_id,
+  ROUND(
+    SUM(CASE WHEN event_type = 'click' THEN 1.0 ELSE 0.0 END) /
+    NULLIF(SUM(CASE WHEN event_type = 'impression' THEN 1.0 ELSE 0.0 END), 0)
+  , 2)  AS ctr_rate
+FROM events
+GROUP BY app_id;
+```
+
+
+
+---
+
 ### Anti-join pattern : JOIN, NOT EXISTS vs NOT IN  
 
 Example: Find all products that were never sold  
@@ -132,28 +177,6 @@ E	80	4	3	5
 	•	NTILE(n) – splits ordered rows into n buckets (approx equal size): quartiles, deciles, etc.
 	•	PERCENT_RANK() – gives ranking as fraction between 0 and 1 based on position.
 	•	CUME_DIST() – cumulative distribution: “what fraction of rows have score ≤ this one?”
-
-
----
-
-### When doing division, use:
-
-```sql
-NULLIF(denominator, 0)
-```
-to ensure the denominator is non-zero
-
-—--
-
-RANK = 1, 1, 3  
-DENSE_RANK = 1, 1, 2  
-
-—--
-
-```sql
-CASE WHEN x THEN y ELSE 0 END
-```
-don’t forget END 
 
 ---
 
@@ -410,3 +433,4 @@ SELECT
   ) AS total_up_time_days
 FROM ordered;
 ```
+
