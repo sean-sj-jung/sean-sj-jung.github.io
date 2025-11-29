@@ -58,29 +58,70 @@ If perfect colinearity, the $$\beta$$ will be non-identifiable as there is no un
 
 We choose $$\beta$$ to minimize the Residual Sum of Squares (RSS):
 $$
-	\hat\beta &= \arg\min_\beta \ \text{RSS}(\beta) \\
-	&= \arg\min_\beta \ \| \mathbf{y} - X\beta \|^2
+\begin{align}
+\hat\beta &= \arg\min_\beta \ \text{RSS}(\beta) \\
+&= \arg\min_\beta \ \| \mathbf{y} - X\beta \|^2
+\end{align}	
 $$  
 
 Loss:  
-	$$L(\beta) = (\mathbf{y} - X\beta)^\top(\mathbf{y} - X\beta)$$
+$$
+\begin{align}
+L(\beta) &= (\mathbf{y} - X\beta)^\top(\mathbf{y} - X\beta) \\
+&= \mathbf{y}^\top \mathbf{y}
+- \mathbf{y}^\top X\beta
+- (X\beta)^\top \mathbf{y}
++ (X\beta)^\top (X\beta)
+\end{align}	
+$$
   
+Using $$ (X\beta)^\top = \beta^\top X^\top \quad\Rightarrow\quad - \mathbf{y}^\top X\beta = - (\mathbf{y}^\top X)\beta = - \beta^\top X^\top \mathbf{y}$$  
+  
+And $$(X\beta)^\top \mathbf{y} = - \beta^\top X^\top \mathbf{y}$$  
+  
+$$
+L(\beta) = \mathbf{y}^\top \mathbf{y} - 2 \beta^\top X^\top \mathbf{y} + \beta^\top X^\top X \beta.
+$$
+
 Take gradient w.r.t. $$\beta$$:  
   
 $$
-	\nabla_\beta L(\beta) = -2X^\top\mathbf{y} + 2X^\top X\beta  
-$$  
-Set gradient to zero:  
+\begin{align}
+\nabla_\beta L(\beta) &= \frac{\partial L(\beta)}{\partial \beta} \\
+&= \frac{\partial}{\partial \beta}\left( \mathbf{y}^\top \mathbf{y} \right)
+- 2 \frac{\partial}{\partial \beta}\left( \beta^\top X^\top \mathbf{y} \right)
++ \frac{\partial}{\partial \beta}\left( \beta^\top X^\top X \beta \right)
+\end{align}	
+$$   
+  
+Where  
+
+$$
+\frac{\partial}{\partial \beta}\left( \mathbf{y}^\top \mathbf{y} \right) = 0
+  
+Let a = X^\top \mathbf{y} (constant w.r.t. \beta). Then:  
+\frac{\partial}{\partial \beta} \left( \beta^\top a \right) = a
+so
+\frac{\partial}{\partial \beta} \left( -2 \beta^\top X^\top \mathbf{y} \right)
+= -2 X^\top \mathbf{y}.  
+
+Let A = X^\top X. Then A = A^\top. Using the symmetric case:  
+\frac{\partial}{\partial \beta} \left( \beta^\top A \beta \right) = 2A\beta = 2X^\top X \beta.
+  
+$$   
+
 $$  
 -2X^\top\mathbf{y} + 2X^\top X\beta = 0 
 \quad\Rightarrow\quad 
 X^\top X \hat\beta = X^\top \mathbf{y}  
 $$  
-Assuming $$X^\top X$$ is invertible, we get the closed form OLS solution:  
+  
+Assuming $$X^\top X$$ is invertible, we get the closed form OLS solution:   
+  
 $$  
 \hat\beta = (X^\top X)^{-1} X^\top \mathbf{y}
 $$  
-  
+
 #### Maximum Likelihood Estimate of $$\beta$$
   
 If we assume
