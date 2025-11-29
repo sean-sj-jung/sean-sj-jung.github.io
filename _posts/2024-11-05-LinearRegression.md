@@ -76,15 +76,12 @@ L(\beta) &= (\mathbf{y} - X\beta)^\top(\mathbf{y} - X\beta) \\
 \end{align}	
 $$
   
-Using  
-$$ (X\beta)^\top = \beta^\top X^\top \quad\Rightarrow\quad - \mathbf{y}^\top X\beta = - (\mathbf{y}^\top X)\beta = - \beta^\top X^\top \mathbf{y}$$  
-   
-$$(X\beta)^\top \mathbf{y} = - \beta^\top X^\top \mathbf{y}$$  
+Using $$ (X\beta)^\top = \beta^\top X^\top$$ and $$(X\beta)^\top \mathbf{y} = \beta^\top X^\top \mathbf{y}$$  
   
 $$
-L(\beta) = \mathbf{y}^\top \mathbf{y} - 2 \beta^\top X^\top \mathbf{y} + \beta^\top X^\top X \beta.
+L(\beta) = \mathbf{y}^\top \mathbf{y} - 2 \beta^\top X^\top \mathbf{y} + \beta^\top X^\top X \beta  
 $$
-
+  
 Take gradient w.r.t. $$\beta$$:  
   
 $$
@@ -97,19 +94,23 @@ $$
 $$   
   
 Where  
-
+  
 $$
 \frac{\partial}{\partial \beta}\left( \mathbf{y}^\top \mathbf{y} \right) = 0  
 $$
-
+  
 Let $$a = X^\top \mathbf{y} (constant w.r.t. \beta)$$  
+  
 Then  
+  
 $$\frac{\partial}{\partial \beta} \left( \beta^\top a \right) = a$$  
-so  
-$$\frac{\partial}{\partial \beta} \left( -2 \beta^\top X^\top \mathbf{y} \right)
-= -2 X^\top \mathbf{y}$$  
+  
+so   
+  
+$$\frac{\partial}{\partial \beta} \left( -2 \beta^\top X^\top \mathbf{y} \right) = -2 X^\top \mathbf{y}$$  
   
 Let $$A = X^\top X$$. Then $$A = A^\top$$. Using the symmetric case:  
+  
 $$\frac{\partial}{\partial \beta} \left( \beta^\top A \beta \right) = 2A\beta = 2X^\top X \beta$$   
   
 Therefore,   
@@ -118,10 +119,9 @@ $$
 \nabla_\beta L(\beta) = -2X^\top\mathbf{y} + 2X^\top X\beta
 $$  
   
-
+And  
+  
 $$  
--2X^\top\mathbf{y} + 2X^\top X\beta = 0 
-\quad\Rightarrow\quad 
 X^\top X \hat\beta = X^\top \mathbf{y}  
 $$  
   
@@ -138,10 +138,13 @@ $$\varepsilon \sim \mathcal{N}(0, \sigma^2 I)$$,
 then conditional on $$X, \mathbf{y}$$ is multivariate normal with mean $$X\beta$$ and covariance $$\sigma^2 I$$.   
   
 The log-likelihood of $$\beta,\sigma^2$$ is (up to constants):  
+  
 $$  
 \ell(\beta, \sigma^2)
 = -\frac{n}{2}\log(\sigma^2) - \frac{1}{2\sigma^2} \|\mathbf{y} - X\beta\|^2
 $$  
+  
+
 For fixed $$\sigma^2$$, maximizing $$\ell$$ w.r.t. $$\beta$$ is equivalent to minimizing $$\|\mathbf{y} - X\beta\|^2$$.  
 i.e. OLS = MLE for $$\beta$$ under Gaussian noise assumption.  
 
@@ -150,16 +153,15 @@ i.e. OLS = MLE for $$\beta$$ under Gaussian noise assumption.
 ### Test statistics  
   
 Given assumptions, we have:  
-	•	Unbiased estimator:  
-$$E[\hat\beta] = \beta$$  
-	•	Variance of estimator:  
-$$\mathrm{Var}(\hat\beta) = \sigma^2 (X^\top X)^{-1}$$  
-
+Unbiased estimator:  $$E[\hat\beta] = \beta$$  
+Variance of estimator:  $$\mathrm{Var}(\hat\beta) = \sigma^2 (X^\top X)^{-1}$$  
+  
 We can estimate $$\sigma^2$$ by:  
 $$  
 \hat{\sigma}^2 = \frac{1}{n - p - 1} \sum_{i=1}^n (y_i - \hat{y}_i)^2
 = \frac{\text{RSS}}{n - p - 1}
 $$  
+  
 Then the standard error of coefficient $$\hat\beta_j$$ is:  
   
 $$\mathrm{SE}(\hat\beta_j) = \sqrt{ \hat{\sigma}^2 [(X^\top X)^{-1}]_{jj} }$$
@@ -194,25 +196,30 @@ If perfect multicollinearity (e.g. $$x_1=2*x_2, x_1=x_2+x_3$$), then $$X^\top X$
 If imperfect but high multicollinearity, the determinant is close to zero and $$\hat\beta$$ will have a unique solution with very high variance (= huge $$SE(\beta)$$), likely resulting in statistically not significant estimate of  $$\beta$$ and $$\beta$$ will be sensitive to small changes in the data.  
 
 Fix the multicollinearity by:  
-Dropping/recombining features.   
-PCA or other dimensionality reduction.  
-Regularization (Ridge / Lasso).  
+- Dropping/recombining features    
+- PCA or other dimensionality reduction  
+- Regularization (Ridge / Lasso)  
 
 #### Regularized linear models:  
-- Ridge (L2):  
+##### Ridge (L2):  
+  
 $$\hat\beta^{\text{ridge}} = \arg\min_\beta \ \|y - X\beta\|^2 + \lambda \|\beta\|_2^2$$  
   
 Closed form:  
   
 $$\hat\beta^{\text{ridge}} = (X^\top X + \lambda I)^{-1} X^\top y$$  
+
+$$\lambda$$  ensure all eigenvalues are positive, determinant becomes non-zero and is always invertible.  
+Ridge is biased but low variance.  
+
   
+
+##### Lasso (L1):  
   
+$$\hat\beta^{\text{lasso}} = \arg\min_\beta \ \|y - X\beta\|^2 + \lambda \|\beta\|_1$$   
   
-- Lasso (L1):  
-  
-$$\hat\beta^{\text{lasso}} = \arg\min_\beta \ \|y - X\beta\|^2 + \lambda \|\beta\|_1$$  
-  
-No closed form; solved by coordinate descent, etc. Induces sparsity.  
-  
+No closed form; solved by coordinate descent, etc.  
+Shirnk coefficient toward zero and useful for feature selection.   
+
   
 ⸻
