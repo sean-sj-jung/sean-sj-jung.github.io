@@ -58,16 +58,17 @@ If perfect colinearity, the $$\beta$$ will be non-identifiable as there is no un
 
 We choose $$\beta$$ to minimize the Residual Sum of Squares (RSS):
 $$
-\hat\beta = \arg\min_\beta \ \text{RSS}(\beta)  
-= \arg\min_\beta \ \| \mathbf{y} - X\beta \|^2
+	\hat\beta &= \arg\min_\beta \ \text{RSS}(\beta) \\
+	&= \arg\min_\beta \ \| \mathbf{y} - X\beta \|^2
 $$  
 
 Loss:  
-$$L(\beta) = (\mathbf{y} - X\beta)^\top(\mathbf{y} - X\beta)$$
+	$$L(\beta) = (\mathbf{y} - X\beta)^\top(\mathbf{y} - X\beta)$$
   
 Take gradient w.r.t. $$\beta$$:  
+  
 $$
-\nabla_\beta L(\beta) = -2X^\top\mathbf{y} + 2X^\top X\beta  
+	\nabla_\beta L(\beta) = -2X^\top\mathbf{y} + 2X^\top X\beta  
 $$  
 Set gradient to zero:  
 $$  
