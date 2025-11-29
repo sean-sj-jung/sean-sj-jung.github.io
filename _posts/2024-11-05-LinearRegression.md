@@ -315,7 +315,6 @@ $$\hat\beta^{\text{ridge}} = (X^\top X + \lambda I)^{-1} X^\top y$$
 $$\lambda$$  ensure all eigenvalues are positive, determinant becomes non-zero and is always invertible.  
 Ridge is biased but low variance.  
 
-
 ##### Lasso (L1):  
   
 $$\hat\beta^{\text{lasso}} = \arg\min_\beta \ \|y - X\beta\|^2 + \lambda \|\beta\|_1$$   
@@ -329,5 +328,19 @@ OLS is unbiased but can have variance when:
 - collinear X  
 - out-of-sample prediction  
 L1 and L2 regularization can reduce variance with increase in bias  
-
+  
 ⸻
+  
+### Example questions  
+  
+Let's say there is a linear regression model $$y = b0 + b1x1 + b2x2 + b3x3$$.   
+Q1. I'm interested in whether $$x_1$$ is any useful for predicting $$y$$. In this case, is there any point of including $$x_2$$ and $$x_3$$ in the model?  
+
+1. If you care about any association between $$x_1$$ and $$y$$, then a simple univariate regression will do.  
+2. If you care about conditional association, meaning holding other variables fixed, then the $$x_2$$ and $$x_3$$ should be in the model.  
+3. If the other variables are correlated with $$x_1$$, then they should be in the model; otherwise $$\beta_1$$ will be biased (omitted variable bias).  
+  
+Q2. If $$x_2$$ and $$x_3$$ are highly correlated, will it affect the estimate of $$\beta_1$$?  
+If $$x_1$$ is correlated as well, then the variance of the estimate will be inflated. But if it has 0 correlation with the two variables, then it won't be affected.  
+  
+  

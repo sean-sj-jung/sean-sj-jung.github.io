@@ -106,3 +106,43 @@ $$
 #### Ordinal or non-normal data → Use rank-based or non-parametric tests
 - Wilcoxon signed-rank, Mann-Whitney U, Kruskal-Wallis, etc
 
+--- 
+
+### Coin toss, Binomial example  
+  
+Q. A coin was flipped 1000 times, and 530 times it showed heads. Do you think the coin is biased? Why or why not?  
+
+1.	Hypotheses
+
+$$H_0: p = 0.5 \quad \text{(coin is fair)}$$
+$$H_1: p \ne 0.5 \quad \text{(coin is biased)}$$
+
+This is a two-sided test.
+
+⸻
+
+2.	Test statistic
+
+Sample size: n = 1000
+Observed proportion of heads:
+$$$\hat p = \frac{530}{1000} = 0.53$$$
+
+Under H_0, the standard error is
+$$\text{SE}_0 = \sqrt{\frac{p_0(1-p_0)}{n}}
+= \sqrt{\frac{0.5 \cdot 0.5}{1000}}
+$$
+The z-statistic is
+$$z = \frac{\hat p - p_0}{\text{SE}_0}
+= \frac{0.53 - 0.5}{\sqrt{0.5 \cdot 0.5 / 1000}}
+\approx 1.90
+$$
+⸻
+
+3.	p-value (two-sided)
+
+$$p\text{-value} = 2\big(1 - \Phi(|z|)\big)
+\approx 2 \big(1 - \Phi(1.90)\big)
+\approx 0.06$$
+  
+Note: Do not confuse sample's distribution ($$Var(X)=n*p*q$$) vs distribution of $$\hat p=X/n, Var(\hat p)=1/n^2 \times Var(X) $$  
+  
