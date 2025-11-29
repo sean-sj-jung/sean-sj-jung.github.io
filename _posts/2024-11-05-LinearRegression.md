@@ -56,7 +56,7 @@ If perfect colinearity, the $$\beta$$ will be non-identifiable as there is no un
 
 ### OLS Fitting
 
-We choose $$\beta$$ to minimize the Residual Sum of Squares (RSS):
+We choose $$\beta$$ to minimize the Residual Sum of Squares (RSS):  
 $$
 \begin{align}
 \hat\beta &= \arg\min_\beta \ \text{RSS}(\beta) \\
@@ -65,6 +65,7 @@ $$
 $$  
 
 Loss:  
+
 $$
 \begin{align}
 L(\beta) &= (\mathbf{y} - X\beta)^\top(\mathbf{y} - X\beta) \\
@@ -75,9 +76,10 @@ L(\beta) &= (\mathbf{y} - X\beta)^\top(\mathbf{y} - X\beta) \\
 \end{align}	
 $$
   
-Using $$ (X\beta)^\top = \beta^\top X^\top \quad\Rightarrow\quad - \mathbf{y}^\top X\beta = - (\mathbf{y}^\top X)\beta = - \beta^\top X^\top \mathbf{y}$$  
-  
-And $$(X\beta)^\top \mathbf{y} = - \beta^\top X^\top \mathbf{y}$$  
+Using  
+$$ (X\beta)^\top = \beta^\top X^\top \quad\Rightarrow\quad - \mathbf{y}^\top X\beta = - (\mathbf{y}^\top X)\beta = - \beta^\top X^\top \mathbf{y}$$  
+   
+$$(X\beta)^\top \mathbf{y} = - \beta^\top X^\top \mathbf{y}$$  
   
 $$
 L(\beta) = \mathbf{y}^\top \mathbf{y} - 2 \beta^\top X^\top \mathbf{y} + \beta^\top X^\top X \beta.
@@ -97,18 +99,25 @@ $$
 Where  
 
 $$
-\frac{\partial}{\partial \beta}\left( \mathbf{y}^\top \mathbf{y} \right) = 0
-  
-Let a = X^\top \mathbf{y} (constant w.r.t. \beta). Then:  
-\frac{\partial}{\partial \beta} \left( \beta^\top a \right) = a
-so
-\frac{\partial}{\partial \beta} \left( -2 \beta^\top X^\top \mathbf{y} \right)
-= -2 X^\top \mathbf{y}.  
+\frac{\partial}{\partial \beta}\left( \mathbf{y}^\top \mathbf{y} \right) = 0  
+$$
 
-Let A = X^\top X. Then A = A^\top. Using the symmetric case:  
-\frac{\partial}{\partial \beta} \left( \beta^\top A \beta \right) = 2A\beta = 2X^\top X \beta.
+Let $$a = X^\top \mathbf{y} (constant w.r.t. \beta)$$  
+Then  
+$$\frac{\partial}{\partial \beta} \left( \beta^\top a \right) = a$$  
+so  
+$$\frac{\partial}{\partial \beta} \left( -2 \beta^\top X^\top \mathbf{y} \right)
+= -2 X^\top \mathbf{y}$$  
   
-$$   
+Let $$A = X^\top X$$. Then $$A = A^\top$$. Using the symmetric case:  
+$$\frac{\partial}{\partial \beta} \left( \beta^\top A \beta \right) = 2A\beta = 2X^\top X \beta$$   
+  
+Therefore,   
+  
+$$  
+\nabla_\beta L(\beta) = -2X^\top\mathbf{y} + 2X^\top X\beta
+$$  
+  
 
 $$  
 -2X^\top\mathbf{y} + 2X^\top X\beta = 0 
@@ -166,35 +175,44 @@ F-test for overall model: Compare full model vs intercept-only model to test if 
 ⸻
 
 ### R², Adjusted R² & interpretation
-	•	Total Sum of Squares (TSS):  
-$$\text{TSS} = \sum_{i=1}^n (y_i - \bar{y})^2$$  
-	•	Residual Sum of Squares (RSS):  
-$$\text{RSS} = \sum_{i=1}^n (y_i - \hat{y}_i)^2$$  
-	•	R²:  
-$$R^2 = 1 - \frac{\text{RSS}}{\text{TSS}}$$  
-Fraction of variance in y explained by the model.  
-	•	Adjusted R² penalizes number of predictors:  
-$$R^2_{\text{adj}} = 1 - \frac{\text{RSS} / (n - p - 1)}{\text{TSS} / (n - 1)}$$  
+Total Sum of Squares (TSS):  $$\text{TSS} = \sum_{i=1}^n (y_i - \bar{y})^2$$  
+Residual Sum of Squares (RSS):  $$\text{RSS} = \sum_{i=1}^n (y_i - \hat{y}_i)^2$$  
+R²:  $$R^2 = 1 - \frac{\text{RSS}}{\text{TSS}}$$  
+	Fraction of variance in y explained by the model.  
+Adjusted R² penalizes number of predictors:  $$R^2_{\text{adj}} = 1 - \frac{\text{RSS} / (n - p - 1)}{\text{TSS} / (n - 1)}$$  
   
-Pitfall: R² always increases (or stays the same) as you add features; adjusted R² tries to correct for this. But still, prefer out-of-sample metrics and cross-validation for model comparison.  
+R² always increases (or stays the same) as you add features; adjusted R² tries to correct for this.   
+(But in reality, out-of-sample metrics and cross-validation for model comparison)
   
 ⸻
 
-### Practical issues: multicollinearity, regularization, etc.
-	•	Multicollinearity:  
-	•	Highly correlated features \Rightarrow X^\top X close to singular.  
-	•	Leads to unstable \hat\beta, large variances, weird signs.  
-	•	Fix via:  
-	•	Dropping/recombining features.  
-	•	PCA or other dimensionality reduction.  
-	•	Regularization (Ridge / Lasso).  
-	•	Regularized linear models:  
-	•	Ridge (L2):  
+### Practical issues: multicollinearity, regularization, etc.  
+
+#### Multicollinearity:  
+If perfect multicollinearity (e.g. $$x_1=2*x_2, x_1=x_2+x_3$$), then $$X^\top X$$ becomes singular, rank-deficient, determinant is zero, and not invertible. No unique solution for $$\hat\beta$$.  
+  
+If imperfect but high multicollinearity, the determinant is close to zero and $$\hat\beta$$ will have a unique solution with very high variance (= huge $$SE(\beta)$$), likely resulting in statistically not significant estimate of  $$\beta$$ and $$\beta$$ will be sensitive to small changes in the data.  
+
+Fix the multicollinearity by:  
+Dropping/recombining features.   
+PCA or other dimensionality reduction.  
+Regularization (Ridge / Lasso).  
+
+#### Regularized linear models:  
+- Ridge (L2):  
 $$\hat\beta^{\text{ridge}} = \arg\min_\beta \ \|y - X\beta\|^2 + \lambda \|\beta\|_2^2$$  
+  
 Closed form:  
+  
 $$\hat\beta^{\text{ridge}} = (X^\top X + \lambda I)^{-1} X^\top y$$  
-	•	Lasso (L1):  
+  
+  
+  
+- Lasso (L1):  
+  
 $$\hat\beta^{\text{lasso}} = \arg\min_\beta \ \|y - X\beta\|^2 + \lambda \|\beta\|_1$$  
+  
 No closed form; solved by coordinate descent, etc. Induces sparsity.  
+  
   
 ⸻
