@@ -173,10 +173,93 @@ $$t_j = \frac{\hat\beta_j - 0}{\mathrm{SE}(\hat\beta_j)}$$
 With normal errors, t_j follows a t distribution with n - p - 1 degrees of freedom. We get a p-value and can build confidence intervals.  
   
 F-test for overall model: Compare full model vs intercept-only model to test if at least one coefficient is non-zero.  
+
+---
+
+#### Standard error of coefficient $$\beta$$
+
+##### Sampling distribution of $$\hat\beta$$
+
+Plug model into \hat\beta:  
+  
+$$\hat\beta = (X^\top X)^{-1} X^\top (X\beta + \varepsilon)$$  
+  
+Distribute:  
+  
+$$\hat\beta = (X^\top X)^{-1} X^\top X\beta + (X^\top X)^{-1} X^\top \varepsilon$$  
+   
+Use $$(X^\top X)^{-1} X^\top X = I_p$$:  
+  
+$$\hat\beta = \beta + (X^\top X)^{-1} X^\top \varepsilon$$
+  
+Take expectation (condition on fixed X):  
+  
+$$\mathbb{E}[\hat\beta \mid X] = \beta + (X^\top X)^{-1} X^\top \mathbb{E}[\varepsilon \mid X] = \beta$$  
+  
+So $$\hat\beta$$ is unbiased.  
+  
+Variance:  
+  
+$$\text{Var}(\hat\beta \mid X) = \text{Var}\big((X^\top X)^{-1} X^\top \varepsilon \,\big|\, X\big)$$  
+  
+Let $$A = (X^\top X)^{-1} X^\top. Then \hat\beta = \beta + A\varepsilon$$, so:  
+  
+$$\text{Var}(\hat\beta \mid X) = A\,\text{Var}(\varepsilon \mid X)\,A^\top$$
+  
+By assumption, $$\text{Var}(\varepsilon \mid X) = \sigma^2 I_n$$. Thus:  
+  
+$$\text{Var}(\hat\beta \mid X) = A(\sigma^2 I_n)A^\top = \sigma^2 A A^\top$$
+  
+Compute $$AA^\top$$:  
+  
+$$A = (X^\top X)^{-1} X^\top \quad\Rightarrow\quad A A^\top = (X^\top X)^{-1} X^\top X (X^\top X)^{-1} = (X^\top X)^{-1}$$
+  
+So:  
+  
+$$\boxed{\text{Var}(\hat\beta \mid X) = \sigma^2 (X^\top X)^{-1}}$$
+  
+If errors are normal, since \hat\beta is a linear transformation of a multivariate normal \varepsilon, we have:  
+  
+$$\hat\beta \mid X \sim \mathcal{N}\left(\beta,\ \sigma^2 (X^\top X)^{-1}\right)$$
+  
+##### Standard error of a single coefficient
+
+Let  
+  
+$$\text{Var}(\hat\beta \mid X) = \sigma^2 (X^\top X)^{-1} = \sigma^2 C$$  
+  
+where $$C = (X^\top X)^{-1}$$ is a $$p \times p$$ matrix.  
+  
+The variance of the j-th coefficient $$\hat\beta_j$$ is the j-th diagonal element of this covariance matrix:  
+  
+$$\text{Var}(\hat\beta_j \mid X) = \sigma^2 C_{jj}$$  
+  
+So the standard deviation (population standard deviation of \hat\beta_j) is:  
+  
+$$\text{SD}(\hat\beta_j \mid X) = \sqrt{\sigma^2 C_{jj}} = \sigma \sqrt{C_{jj}}$$  
+  
+We don’t know $$\sigma$$. In practice, we replace $$\sigma^2$$ with its estimator $$s^2$$. Then the standard error of $$\hat\beta_j$$ is:  
+  
+$$\boxed{\text{SE}(\hat\beta_j) = \sqrt{s^2 C_{jj}}}$$
+  
+where $$C_{jj}$$ is the j-th diagonal element of $$(X^\top X)^{-1}$$.  
+  
+##### Single-predictor intuition  
+  
+For simple linear regression with intercept:  
+  
+$$y_i = \beta_0 + \beta_1 x_i + \varepsilon_i,\quad i=1,\dots,n$$  
+  
+You can show (standard result) that:  
+	•	$$\hat\beta_1 = \dfrac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}$$  
+	•	$$s^2 = \dfrac{1}{n-2} \sum \hat\varepsilon_i^2$$  
+	•	And: $$\text{SE}(\hat\beta_1) = \frac{s}{\sqrt{\sum (x_i - \bar{x})^2}}$$  
+  
+This matches the matrix formula: $$\text{SE}(\hat\beta_1)^2 = s^2 C_{11}.$$   
   
 ⸻
 
-### R², Adjusted R² & interpretation
+### R², Adjusted R² & interpretation  
 Total Sum of Squares (TSS):  $$\text{TSS} = \sum_{i=1}^n (y_i - \bar{y})^2$$  
 Residual Sum of Squares (RSS):  $$\text{RSS} = \sum_{i=1}^n (y_i - \hat{y}_i)^2$$  
 R²:  $$R^2 = 1 - \frac{\text{RSS}}{\text{TSS}}$$  
@@ -184,12 +267,32 @@ R²:  $$R^2 = 1 - \frac{\text{RSS}}{\text{TSS}}$$
 Adjusted R² penalizes number of predictors:  $$R^2_{\text{adj}} = 1 - \frac{\text{RSS} / (n - p - 1)}{\text{TSS} / (n - 1)}$$  
   
 R² always increases (or stays the same) as you add features; adjusted R² tries to correct for this.   
-(But in reality, out-of-sample metrics and cross-validation for model comparison)
+(But in reality, out-of-sample metrics and cross-validation for model comparison)  
+  
+  
+#### F-Test and Sums of Squares  
+  
+Mean Square Regression (MSR): $$\text{MSR} = \frac{\text{SSR}}{k}$$  
+Mean Square Error (MSE): $$\text{MSE} = \frac{\text{SSE}}{n - k - 1}$$  
+  
+$$F = \frac{\text{MSR}}{\text{MSE}} = \frac{\text{SSR}/k}{\text{SSE}/(n - k - 1)}$$  
+  
+Intuition:  
+MSR ≈ variance in y explained per predictor (signal).  
+MSE ≈ variance of the noise (unexplained variation).  
+  
+If the model is useless (H_0 true), adding predictors doesn’t reduce SSE much relative to noise, so MSR ≈ MSE and F \approx 1.  
+  
+If the model explains a lot relative to noise, MSR ≫ MSE and F is large.  
+  
+Under classical assumptions (linear model is correct, errors i.i.d. normal with constant variance, independent):  
+Under $$H_0$$, $$F \sim F_{k,\,n-k-1}$$  
+(F distribution with k and n-k-1 degrees of freedom)  
   
 ⸻
-
+  
 ### Practical issues: multicollinearity, regularization, etc.  
-
+  
 #### Multicollinearity:  
 If perfect multicollinearity (e.g. $$x_1=2*x_2, x_1=x_2+x_3$$), then $$X^\top X$$ becomes singular, rank-deficient, determinant is zero, and not invertible. No unique solution for $$\hat\beta$$.  
   
@@ -212,7 +315,6 @@ $$\hat\beta^{\text{ridge}} = (X^\top X + \lambda I)^{-1} X^\top y$$
 $$\lambda$$  ensure all eigenvalues are positive, determinant becomes non-zero and is always invertible.  
 Ridge is biased but low variance.  
 
-  
 
 ##### Lasso (L1):  
   
@@ -221,5 +323,11 @@ $$\hat\beta^{\text{lasso}} = \arg\min_\beta \ \|y - X\beta\|^2 + \lambda \|\beta
 No closed form; solved by coordinate descent, etc.  
 Shirnk coefficient toward zero and useful for feature selection.   
 
-  
+##### Bias-Variance Tradeoff  
+OLS is unbiased but can have variance when:  
+- p is relatively large to n  
+- collinear X  
+- out-of-sample prediction  
+L1 and L2 regularization can reduce variance with increase in bias  
+
 ⸻
