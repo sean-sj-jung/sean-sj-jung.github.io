@@ -37,3 +37,5 @@ f_Z(z) &= \frac{1}{b-a}\cdot\frac{z-a}{b-a} + \frac{z-a}{b-a}\cdot\frac{1}{b-a} 
 &= 2\left(\frac{z-a}{b-a}\right)
 \end{align}
 $$
+
+
