@@ -13,7 +13,7 @@ excerpt: "Hypothesis testing since it is so popular in interview"
 The probability of observing results as extreme or more extreme than the current sample statistic, under the assumption that the null hypothesis is true.
   
 ---
-
+  
 #### Example 1: One-sample **Z-test** (Known population variance)
 
 A company claims that their battery lasts **10 hours on average**. You think it’s **less**.
@@ -28,23 +28,23 @@ You test 36 batteries and get:
 
 #### 1. Compute test statistic (Z-score):
 
-$$
-Z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{9.5 - 10}{1.8 / \sqrt{36}} = \frac{-0.5}{0.3} = -1.67
-$$
+	$$
+	Z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{9.5 - 10}{1.8 / \sqrt{36}} = \frac{-0.5}{0.3} = -1.67
+	$$
 
-#### 2. Find p-value from Z-table:
+#### 2. Find p-value from Z-table:  
 
-Since this is a left-tailed test, the p-value is:
+Since this is a left-tailed test, the p-value is:  
 
-$$
-P(Z < -1.67) \approx 0.0475
-$$
-
+	$$
+	P(Z < -1.67) \approx 0.0475
+	$$
+  
 #### 3. Compare to $$ \alpha = 0.05 $$:
 - p-value = 0.0475 < 0.05 → Reject $$ H_0 $$
 - Interpretation: The sample gives statistically significant evidence that the battery lasts less than 10 hours
-
-
+  
+  
 ---
 
 #### Example 2: One-sample **t-test** (Unknown population variance)
@@ -74,16 +74,16 @@ $$
 - From t-tables or calculator:
   $$ P(t > 2.0) \approx 0.032 $$
 
-$$
-\text{p-value} \approx 2 \times 0.032 = 0.064
-$$
+	$$
+	\text{p-value} \approx 2 \times 0.032 = 0.064
+	$$
 
 #### 4. Compare to $$ \alpha = 0.05 $$:
 - p-value = 0.064 > 0.05 → Fail to reject $$ H_0 $$
 - Interpretation: Not enough evidence to conclude the teaching method changes scores.
-
+  
 ---
-
+  
 #### $$\alpha$$ and Type I Error
   - aka Significance Level  
   - False Positive Rate (FP / FP + TN)
@@ -97,10 +97,12 @@ $$
   - $$\beta$$, Probability of making a Type II Error (False Negative)
     - Fail to reject the null hypothesis when the alternative is true
     - e.g. Fail to approve an effective drug
-  - $$1 - \beta$$, The power of test  
+  - $$1 - \beta$$, The power of test   
+    
     $$
     \text{Power} = 1 - \beta = True Positive Rate (= TP / TP + FN)
-    $$    
+    $$     
+	  
     - $$ 1 - \beta $$ is the probability of correctly rejecting $$ H_0 $$ when it is false.  
     - e.g. If a test has power of 80%, it means that if a person has the condition, there is an 80% chance they will test positive (True Positive).  Conversely, there is a 20% chance of incorrectly return negative (False Negative), which is the Type II error ($$\beta$$)  
   - To reduce the chance of Type II Error (or increase the power of test):  
@@ -131,7 +133,7 @@ n \approx \left(\frac{2.8}{0.5}\right)^2 = 31.36 \approx 32 \text{ samples per g
 $$
   
 where $$ s^2 $$ is an estimate of the population variance and $$ d = \mu_1 - \mu_2 $$.  
-
+  
 ---
 
 ### Confidence Interval  

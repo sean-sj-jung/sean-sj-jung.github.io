@@ -5,6 +5,7 @@ date: 2024-11-02
 excerpt: "Probabiltiy and Statistics 101 Equivalent Material"
 ---
 
+---
 ### Law of Large Numbers
 Given an i.i.d. random variable $$ X $$:
 
@@ -59,7 +60,12 @@ Computes conditional probability:
 $$
 P(A|B) = \frac{P(B|A) P(A)}{P(B)}
 $$  
-
+  
+$$P(A)$$ : prior  
+$$P(B|A)$$ : likelihood  
+$$P(B)$$ : evidence  
+$$P(A|B)$$ : posterior  
+  
 or  
 
 $$
@@ -94,6 +100,18 @@ $$
   \log\left(\frac{P}{1 - P}\right) = b_0 + b_1X + \epsilon
   $$
   
+- Note:
+  A simple logistic function:  
+  $$
+  \frac{1}{1+e^{-x}}
+  $$
+
+  Logistic unit (logit) is inverse of logistic function:
+  $$
+  \ln\left(\frac{p}{1-p}\right)
+  $$
+
+
 
 ### Maximum Likelihood Estimation (MLE)
   - Estimates coefficients by maximizing:
