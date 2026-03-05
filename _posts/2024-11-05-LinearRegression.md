@@ -331,7 +331,7 @@ L1 and L2 regularization can reduce variance with increase in bias
   
 ⸻
   
-### Example questions  
+### Example question  
   
 Let's say there is a linear regression model $$y = b0 + b1x1 + b2x2 + b3x3$$.   
 Q1. I'm interested in whether $$x_1$$ is any useful for predicting $$y$$. In this case, is there any point of including $$x_2$$ and $$x_3$$ in the model?  
@@ -343,4 +343,31 @@ Q1. I'm interested in whether $$x_1$$ is any useful for predicting $$y$$. In thi
 Q2. If $$x_2$$ and $$x_3$$ are highly correlated, will it affect the estimate of $$\beta_1$$?  
 If $$x_1$$ is correlated as well, then the variance of the estimate will be inflated. But if it has 0 correlation with the two variables, then it won't be affected.  
   
+### Another example question  
+
+Suppose you want to predict Y using variables X1 and X2, and linear regression.  
+X1 and X2 are correlated and have variance of 1. You try fitting two different models with maximum likelihood - one that predicts Y using X1 and X2, and another that predicts Y using new predictors (X1 + X2) and (X1 - X2). Which method is better and why?  
+
+
+1. The two models are equivalent, predictively  
+
+The predictors (X1 + X2) and (X1 - X2) are just linear combinations of X1 and X2. Since linear regression with maximum likelihood (i.e., ordinary least squares under Gaussian errors) is being used in both cases, the two models span the exact same column space. Any prediction that can be written as
   
+$$\hat{Y} = \beta_1 X_1 + \beta_2 X_2$$
+  
+can equivalently be written as
+  
+$$\hat{Y} = \gamma_1 (X_1 + X_2) + \gamma_2 (X_1 - X_2)$$
+  
+by setting $\gamma_1 = (\beta_1 + \beta_2)/2$ and $\gamma_2 = (\beta_1 - \beta_2)/2$, and vice versa. The mapping is invertible, so the two parameterizations cover exactly the same set of possible fitted surfaces. Maximum likelihood will find the global optimum in both cases (the OLS objective is convex), so the fitted values $\hat{Y}$, residuals, and log-likelihood will be identical.
+  
+2. Orthogonal  
+
+Since X1 and X2 are correlated (both with variance 1), the design matrix in the original basis has correlated columns, which inflates the variance of $\hat{\beta}_1$ and $\hat{\beta}_2$ (multicollinearity). The transformation to (X1 + X2) and (X1 - X2) can decorrelate or reduce the correlation between the new predictors.   
+  
+Specifically, if $\text{Corr}(X_1, X_2) = \rho$, then $\text{Var}(X_1 + X_2) = 2(1+\rho)$ and $\text{Var}(X_1 - X_2) = 2(1-\rho)$, and crucially $\text{Cov}(X_1+X_2,\, X_1-X_2) = 0$. So the new predictors are uncorrelated.  
+
+This means the second parameterization gives coefficient estimates with lower individual variance (no multicollinearity), making interpretation and inference on the individual coefficients more stable. But the predictions and overall model fit are exactly the same.  
+
+**In short:** neither method is "better" in terms of predictive accuracy — they produce identical fits. The rotated basis is better conditioned numerically and yields more interpretable, lower-variance coefficient estimates.  
+
