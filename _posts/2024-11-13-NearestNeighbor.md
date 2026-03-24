@@ -2,152 +2,145 @@
 layout: post
 title: "kNN, Nearest Neighbor"
 date: 2024-11-13
-excerpt: "Implement nearest neighbor"
+excerpt: "Interview, k-NN"
 ---
 
+### Implement k-NN
+1. Receive a query point and the training dataset  
+2. Compute distance from the query point to every point in the dataset (typically Euclidean)  
+3. Sort all distances and pick the k smallest  
+4. Aggregate the labels of those k neighbors — majority vote for classification, average for regression  
+5. Return the predicted label  
+
+  
+#### Version 1, without numpy  
+  
+```python
+data = [
+    [5.10, 5.37, 5.09, 2],
+    [9.85, 10.17, 10.49, 3],
+    [1.27, 0.77, 0.77, 1],
+    [5.19, 4.70, 4.85, 2],
+    [4.73, 5.06, 4.42, 2],
+    [5.10, 4.02, 4.34, 2],
+    [0.55, 0.29, 1.73, 1],
+    [10.17, 9.12, 10.16, 3],
+    [9.94, 9.85, 9.26, 3],
+    [10.52, 10.47, 9.58, 3],
+    [9.81, 9.66, 10.31, 3],
+    [4.70, 5.93, 4.99, 2],
+    [0.72, 0.49, 1.16, 1],
+    [4.89, 5.03, 4.29, 2],
+    [4.47, 5.41, 4.39, 2],
+    [1.79, 1.38, 0.77, 1],
+    [1.12, 0.04, 0.14, 1],
+    [9.64, 9.77, 10.53, 3],
+    [1.25, 0.93, 1.32, 1],
+    [1.76, 0.88, 0.88, 1]
+]
+
+target = [1.1, 0.9, 1.2] # Expected Result for test_sample: 1
+
+import math # can be replaced with ** 0.5, but neither robust nor optimal
+
+def compute_distances(data: list[list], target: list[float]) -> list[tuple[float, int]]:
+    pairs = []
+    for row in data:
+        features, label = row[:-1], row[-1]
+        distance = math.sqrt(sum((f - t) ** 2 for f, t in zip(features, target)))
+        pairs.append((distance, label))
+    return sorted(pairs, key=lambda x: x[0])
+
+def classify(neighbors: list[tuple[float, int]]) -> int:
+    votes = {}
+    for distance, label in neighbors:
+        weight = 1 / (distance + 1e-9)
+        votes[label] = votes.get(label, 0) + weight
+    return max(votes, key=votes.get) 
+
+def knn(data: list[list], target: list[float], k: int = 3) -> int:
+    pairs = compute_distances(data, target)
+    return classify(pairs[:k])
+
+print(knn(data, target))  # → 1.0
+```
+  
+#### Version 2, Using numpy  
+  
 
 ```python
-from dataclasses import dataclass
-from typing import Any
+import numpy as np
 
-def _validate_inputs(X: list[list[float]], y: list[Any], k: int) -> None:
-    if k <= 0:
-        raise ValueError("k must be >= 1")
-    if not X:
-        raise ValueError("X is empty")
-    if len(X) != len(y):
-        raise ValueError("X and y must have the same length")
-    d = len(X[0])
-    if d == 0:
-        raise ValueError("X must have at least 1 feature")
-    for i, row in enumerate(X):
-        if len(row) != d:
-            raise ValueError(f"Inconsistent feature dimensions at row {i}")
-        for v in row:
-            fv = float(v)
-            if fv != fv or fv in (float("inf"), float("-inf")):  # NaN or +/-inf
-                raise ValueError(f"X contains non-finite value at row {i}")
-    if k > len(X):
-        raise ValueError("k cannot exceed number of training samples")
+data = np.array(data)
+target = np.array(target)
 
+def compute_distances(data:np.array, target:np.array) -> list:
+    diffs = data[:, :-1] - target 
+    distances = np.sqrt(np.sum(diffs**2, axis=1)) 
+    out = zip(distances, data[:, -1])
+    return sorted(out, key=lambda x:x[0])
 
-def _l2_sq(a: list[float], b: list[float]) -> float:
-    s = 0.0
-    for ai, bi in zip(a, b):
-        diff = ai - bi
-        s += diff * diff
-    return s
+def classify(distances:list) -> int: 
+    # Majority vote
+    temp = {}
+    for d, label in distances:
+        eps = 1e-9
+        w = 1 / (d + eps) # weighted distance
+        temp[label] = temp.get(label, 0) + w # +1 if it was not weighted
+    label = max(temp, key=temp.get) # Getting the MAX OF DICT. 
+    
+    return label
+
+def kNN(data:np.ndarray, target:np.ndarray, k:int = 3) -> int:
+    distances = compute_distances(data, target)
+    target_label = classify(distances[:k])
+
+    return target_label
 
 
-def _most_common(labels: list[Any]) -> Any:
-    # deterministic tie-break: highest count, then smallest repr()
-    counts: dict[Any, int] = {}
-    for lab in labels:
-        counts[lab] = counts.get(lab, 0) + 1
 
-    best_lab: Any = None
-    best_cnt = -1
-    best_key: str | None = None
-    for lab, cnt in counts.items():
-        key = repr(lab)
-        if cnt > best_cnt or (cnt == best_cnt and (best_key is None or key < best_key)):
-            best_lab, best_cnt, best_key = lab, cnt, key
-    return best_lab
-
-
-@dataclass
-class KNN:
-    k: int = 3
-    task: str = "classification"   # "classification" | "regression"
-    weights: str = "uniform"       # "uniform" | "distance"
-    eps: float = 1e-12
-
-    def fit(self, X: list[list[float]], y: list[Any]) -> KNN:
-        _validate_inputs(X, y, self.k)
-        t = self.task.lower()
-        if t not in ("classification", "regression"):
-            raise ValueError("task must be 'classification' or 'regression'")
-        w = self.weights.lower()
-        if w not in ("uniform", "distance"):
-            raise ValueError("weights must be 'uniform' or 'distance'")
-
-        self.task = t
-        self.weights = w
-        self._X = [[float(v) for v in row] for row in X]
-        self._y = list(y)
-        self._d = len(self._X[0])
-        return self
-
-    def _neighbors(self, x: list[float]) -> list[tuple[float, Any]]:
-        if len(x) != self._d:
-            raise ValueError(f"Expected input dimension {self._d}, got {len(x)}")
-
-        dists: list[tuple[float, Any]] = []
-        for xi, yi in zip(self._X, self._y):
-            d_sq = _l2_sq(xi, x)
-            dists.append((d_sq, yi))
-        dists.sort(key=lambda t: t[0])
-        return dists[: self.k]
-
-    def predict_one(self, x: list[float]) -> Any:
-        neigh = self._neighbors(x)
-
-        if self.task == "classification":
-            if self.weights == "uniform":
-                return _most_common([lab for _, lab in neigh])
-
-            votes: dict[Any, float] = {}
-            for d_sq, lab in neigh:
-                w = 1.0 / (d_sq + self.eps)
-                votes[lab] = votes.get(lab, 0.0) + w
-
-            best_lab: Any = None
-            best_score = float("-inf")
-            best_key: str | None = None
-            for lab, score in votes.items():
-                key = repr(lab)
-                if score > best_score or (score == best_score and (best_key is None or key < best_key)):
-                    best_lab, best_score, best_key = lab, score, key
-            return best_lab
-
-        # regression
-        if self.weights == "uniform":
-            return sum(float(v) for _, v in neigh) / self.k
-
-        num = 0.0
-        den = 0.0
-        for d_sq, v in neigh:
-            w = 1.0 / (d_sq + self.eps)
-            num += w * float(v)
-            den += w
-        return num / den if den > 0.0 else float(neigh[0][1])
-
-    def predict(self, X: list[list[float]]) -> list[Any]:
-        return [self.predict_one(x) for x in X]
-
-    def kneighbors(self, x: list[float]) -> list[tuple[float, Any]]:
-        neigh = self._neighbors(x)
-        return [(d_sq ** 0.5, lab) for d_sq, lab in neigh]
-
-
-if __name__ == "__main__":
-    # classification demo
-    Xc = [[1.0, 1.0], [1.2, 0.9], [3.0, 3.0], [3.2, 2.9]]
-    yc = ["A", "A", "B", "B"]
-    clf = KNN(k=3, task="classification", weights="uniform").fit(Xc, yc)
-    print(clf.predict_one([1.1, 1.0]))  # A
-
-    # regression demo
-    Xr = [[0.0], [1.0], [2.0], [3.0]]
-    yr = [0.0, 1.0, 1.9, 3.1]
-    reg = KNN(k=2, task="regression", weights="distance").fit(Xr, yr)
-    print(reg.predict_one([1.5]))
-
+print(kNN(data,target))
 ```
 
 
-### Note
+### Key points:  
+  
+- Distance metric — Euclidean is standard, but you should mention Manhattan and cosine as alternatives  
+- Choice of k — small k = high variance, large k = high bias (the bias-variance tradeoff)  
+- Tie-breaking — what happens when votes are equal? (use odd k, or distance-weighted voting)  
+    - Other heuristics : pick the smaller/larger class by size, pick the closest one (k=1), expand k until it breaks,  
+    - Tie may never break.  
+    "A tie means the point lies in a genuinely ambiguous region of the feature space.  
+    No tie-breaking rule fixes that — it just picks a policy for handling irreducible uncertainty."  
+- Scaling — kNN is sensitive to feature scale, so normalization matters  
+- Time complexity — naïve kNN is O(n·d) per query (n = dataset size, d = dimensions); mention k-d trees or ball trees as optimizations  
 
-- brute-force search is O(nd) per query; sorting is O(n\log n); can reduce to O(n) selection via partial selection/heap  
-- use squared distance for ranking; only need sqrt if you return actual distances  
-- scaling features matters (standardization) for Euclidean distance  
+
+---
+  
+### k-Nearest Neighbors (kNN) vs. Approximate Nearest Neighbor (ANN)  
+
+#### The Core Difference
+The fundamental difference is Exhaustiveness. 
+* **kNN (Exact):** Guarantees finding the absolute $k$ closest neighbors by calculating the distance between the query point and *every single point* in the dataset.
+* **ANN (Approximate):** Uses clever data structures (indexes) to find neighbors that are "close enough" with high probability, but not guaranteed to be the absolute closest.
+
+#### Key Comparison Points
+
+| Feature | k-Nearest Neighbors (kNN) | Approximate Nearest Neighbor (ANN) |
+| :--- | :--- | :--- |
+| **Accuracy** | 100% (Deterministic) | Statistical (Probabilistic) |
+| **Complexity** | $O(N \cdot d)$ — Linear search | $O(\log N)$ or $O(1)$ — Sub-linear |
+| **Scalability** | Poor; slows down as data grows | Excellent; designed for billion-scale data |
+| **Memory** | Low (no index overhead) | High (requires building/storing an index) |
+
+#### When to use which?
+* kNN: when the dataset is small (e.g., a few thousand samples) or when 100% precision is non-negotiable (e.g., medical diagnostics on a small reference set).
+* ANN: when you are dealing with high-dimensional embeddings at scale (e.g., Pinterest visual search, Spotify recommendations, or LLM retrieval-augmented generation).
+
+### Common ANN Algorithms (Good for "Bonus Points")
+If you want to impress the interviewer, mention the techniques used to achieve that speed:
+* HNSW (Hierarchical Navigable Small World): A graph-based approach.
+* IVF (Inverted File Index): Dividing the space into Voronoi cells.
+* LSH (Locality Sensitive Hashing): Hashing similar points into the same "buckets."
+  
