@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Hierarchical Navigable Small Worlds (HNSW)"
+title: "Implement ANN search at scale"
 date: 2025-02-08
 excerpt: "Example implementation of scalable approximate search using FAISS."
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Traditional Machine Learning Methods"
-date: 2024-11-11
+date: 2021-01-02
 excerpt: "SVM, Decision Tree, Bagging and Boosting, Clustering and so on"
 ---
   

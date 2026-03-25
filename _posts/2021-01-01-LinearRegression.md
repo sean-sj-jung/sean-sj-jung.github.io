@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Linear Regression"
-date: 2024-11-05
-excerpt: "Another popular topic in interview"
+date: 2021-01-01
+excerpt: "Another popular topic"
 ---
 
 ### Linear Regression  

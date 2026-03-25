@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Elementary Stats"
-date: 2024-11-02
-excerpt: "Probabiltiy and Statistics 101 Equivalent Material"
+date: 2020-01-01
+excerpt: "Probabiltiy and Statistics 101"
 ---
 
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Interview preparation for SQL"
-date: 2024-11-06
+date: 2020-03-01
 excerpt: "Common SQL patterns"
 ---
 

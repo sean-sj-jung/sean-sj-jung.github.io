@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Conditional Probability Problems"
-date: 2024-11-10
-excerpt: "Example problems"
+title: "Example problems, conditional probability"
+date: 2022-12-02
+excerpt: "More Conditional Probability Problems"
 ---
 
 

@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Hypothesis Testing Example Math"
-date: 2024-11-04
-excerpt: "Compute p-value from scratch"
+date: 2020-01-07
+excerpt: "Compute p-value from scratch etc"
 ---
 
 ## Hypothesis testing Example Problems

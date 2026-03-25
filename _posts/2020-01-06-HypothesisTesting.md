@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Hypothesis Testing"
-date: 2024-11-03
-excerpt: "Hypothesis testing since it is so popular in interview"
+date: 2020-01-06
+excerpt: "Hypothesis Testing Fundamentals"
 ---
 
 ## Hypothesis Testing and p-value

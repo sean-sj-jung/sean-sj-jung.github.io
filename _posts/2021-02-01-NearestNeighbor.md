@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "kNN, Nearest Neighbor"
-date: 2024-11-13
-excerpt: "Interview, k-NN"
+date: 2021-02-01
+excerpt: "k-NN from Scratch"
 ---
 
 ### Implement k-NN
