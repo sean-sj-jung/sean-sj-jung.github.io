@@ -118,9 +118,9 @@ $$H_0: p = 0.5 \quad \text{(coin is fair)}$$
 $$H_1: p \ne 0.5 \quad \text{(coin is biased)}$$
 
 This is a two-sided test.
-
-⸻
-
+  
+--- 
+  
 2.	Test statistic
 
 Sample size: n = 1000
@@ -136,8 +136,9 @@ $$z = \frac{\hat p - p_0}{\text{SE}_0}
 = \frac{0.53 - 0.5}{\sqrt{0.5 \cdot 0.5 / 1000}}
 \approx 1.90
 $$
-⸻
-
+  
+--- 
+  
 3.	p-value (two-sided)
 
 $$p\text{-value} = 2\big(1 - \Phi(|z|)\big)

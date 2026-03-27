@@ -28,17 +28,13 @@ You test 36 batteries and get:
 
 #### 1. Compute test statistic (Z-score):
 
-	$$
-	Z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{9.5 - 10}{1.8 / \sqrt{36}} = \frac{-0.5}{0.3} = -1.67
-	$$
+$$ Z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{9.5 - 10}{1.8 / \sqrt{36}} = \frac{-0.5}{0.3} = -1.67 $$
 
 #### 2. Find p-value from Z-table:  
 
 Since this is a left-tailed test, the p-value is:  
 
-	$$
-	P(Z < -1.67) \approx 0.0475
-	$$
+$$ P(Z < -1.67) \approx 0.0475 $$
   
 #### 3. Compare to $$ \alpha = 0.05 $$:
 - p-value = 0.0475 < 0.05 → Reject $$ H_0 $$

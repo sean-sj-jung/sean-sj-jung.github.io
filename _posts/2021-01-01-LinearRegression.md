@@ -22,13 +22,19 @@ excerpt: "Another popular topic"
 
 ### A Linear Regression Model  
 
+<div style="padding-left: 2em">
+
 $$
 y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \dots + \beta_p x_{ip} + \varepsilon_i
-$$
+$$  
+  
 or  
+  
 $$
 \mathbf{y} = X\beta + \varepsilon
 $$
+
+</div>
 
 ### Assumptions
 
@@ -56,7 +62,8 @@ If perfect colinearity, the $$\beta$$ will be non-identifiable as there is no un
 
 ### OLS Fitting
 
-We choose $$\beta$$ to minimize the Residual Sum of Squares (RSS):  
+Choose $$\beta$$ to minimize the Residual Sum of Squares (RSS):  
+  
 $$
 \begin{align}
 \hat\beta &= \arg\min_\beta \ \text{RSS}(\beta) \\
