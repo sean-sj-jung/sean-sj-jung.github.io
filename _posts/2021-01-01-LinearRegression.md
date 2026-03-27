@@ -19,17 +19,20 @@ excerpt: "Another popular topic"
 
 
 ---
-
 ### A Linear Regression Model  
 
 <div style="padding-left: 2em">
 
 $$
 y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \dots + \beta_p x_{ip} + \varepsilon_i
-$$  
-  
+$$
+
+</div>
+
 or  
-  
+
+<div style="padding-left: 2em">
+
 $$
 \mathbf{y} = X\beta + \varepsilon
 $$
@@ -63,15 +66,21 @@ If perfect colinearity, the $$\beta$$ will be non-identifiable as there is no un
 ### OLS Fitting
 
 Choose $$\beta$$ to minimize the Residual Sum of Squares (RSS):  
-  
+
+<div style="padding-left: 2em">
+
 $$
 \begin{align}
 \hat\beta &= \arg\min_\beta \ \text{RSS}(\beta) \\
 &= \arg\min_\beta \ \| \mathbf{y} - X\beta \|^2
 \end{align}	
-$$  
+$$
+
+</div>
 
 Loss:  
+
+<div style="padding-left: 2em">
 
 $$
 \begin{align}
@@ -82,15 +91,23 @@ L(\beta) &= (\mathbf{y} - X\beta)^\top(\mathbf{y} - X\beta) \\
 + (X\beta)^\top (X\beta)
 \end{align}	
 $$
-  
-Using $$ (X\beta)^\top = \beta^\top X^\top$$ and $$(X\beta)^\top \mathbf{y} = \beta^\top X^\top \mathbf{y}$$  
-  
+
+</div>
+
+Using $$(X\beta)^\top = \beta^\top X^\top$$ and $$(X\beta)^\top \mathbf{y} = \beta^\top X^\top \mathbf{y}$$  
+
+<div style="padding-left: 2em">
+
 $$
 L(\beta) = \mathbf{y}^\top \mathbf{y} - 2 \beta^\top X^\top \mathbf{y} + \beta^\top X^\top X \beta  
 $$
-  
+
+</div>
+
 Take gradient w.r.t. $$\beta$$:  
-  
+
+<div style="padding-left: 2em">
+
 $$
 \begin{align}
 \nabla_\beta L(\beta) &= \frac{\partial L(\beta)}{\partial \beta} \\
@@ -98,59 +115,90 @@ $$
 - 2 \frac{\partial}{\partial \beta}\left( \beta^\top X^\top \mathbf{y} \right)
 + \frac{\partial}{\partial \beta}\left( \beta^\top X^\top X \beta \right)
 \end{align}	
-$$   
-  
+$$
+
+</div>
+
 Where  
-  
+
+<div style="padding-left: 2em">
+
 $$
 \frac{\partial}{\partial \beta}\left( \mathbf{y}^\top \mathbf{y} \right) = 0  
 $$
-  
-Let $$a = X^\top \mathbf{y} (constant w.r.t. \beta)$$  
-  
+
+</div>
+
+Let $$a = X^\top \mathbf{y}$$ (constant w.r.t. $$\beta$$)  
+
 Then  
-  
-$$\frac{\partial}{\partial \beta} \left( \beta^\top a \right) = a$$  
-  
+
+<div style="padding-left: 2em">
+
+$$\frac{\partial}{\partial \beta} \left( \beta^\top a \right) = a$$
+
+</div>
+
 so   
-  
-$$\frac{\partial}{\partial \beta} \left( -2 \beta^\top X^\top \mathbf{y} \right) = -2 X^\top \mathbf{y}$$  
-  
+
+<div style="padding-left: 2em">
+
+$$\frac{\partial}{\partial \beta} \left( -2 \beta^\top X^\top \mathbf{y} \right) = -2 X^\top \mathbf{y}$$
+
+</div>
+
 Let $$A = X^\top X$$. Then $$A = A^\top$$. Using the symmetric case:  
-  
-$$\frac{\partial}{\partial \beta} \left( \beta^\top A \beta \right) = 2A\beta = 2X^\top X \beta$$   
-  
+
+<div style="padding-left: 2em">
+
+$$\frac{\partial}{\partial \beta} \left( \beta^\top A \beta \right) = 2A\beta = 2X^\top X \beta$$
+
+</div>
+
 Therefore,   
-  
+
+<div style="padding-left: 2em">
+
 $$  
 \nabla_\beta L(\beta) = -2X^\top\mathbf{y} + 2X^\top X\beta
-$$  
-  
+$$
+
+</div>
+
 And  
-  
+
+<div style="padding-left: 2em">
+
 $$  
 X^\top X \hat\beta = X^\top \mathbf{y}  
-$$  
-  
+$$
+
+</div>
+
 Assuming $$X^\top X$$ is invertible, we get the closed form OLS solution:   
-  
+
+<div style="padding-left: 2em">
+
 $$  
 \hat\beta = (X^\top X)^{-1} X^\top \mathbf{y}
-$$  
+$$
+
+</div>
 
 #### Maximum Likelihood Estimate of $$\beta$$
   
-If we assume
-$$\varepsilon \sim \mathcal{N}(0, \sigma^2 I)$$,
-then conditional on $$X, \mathbf{y}$$ is multivariate normal with mean $$X\beta$$ and covariance $$\sigma^2 I$$.   
+If we assume $$\varepsilon \sim \mathcal{N}(0, \sigma^2 I)$$, then conditional on $$X, \mathbf{y}$$ is multivariate normal with mean $$X\beta$$ and covariance $$\sigma^2 I$$.   
   
 The log-likelihood of $$\beta,\sigma^2$$ is (up to constants):  
-  
+
+<div style="padding-left: 2em">
+
 $$  
 \ell(\beta, \sigma^2)
 = -\frac{n}{2}\log(\sigma^2) - \frac{1}{2\sigma^2} \|\mathbf{y} - X\beta\|^2
-$$  
-  
+$$
+
+</div>
 
 For fixed $$\sigma^2$$, maximizing $$\ell$$ w.r.t. $$\beta$$ is equivalent to minimizing $$\|\mathbf{y} - X\beta\|^2$$.  
 i.e. OLS = MLE for $$\beta$$ under Gaussian noise assumption.  
@@ -164,20 +212,33 @@ Unbiased estimator:  $$E[\hat\beta] = \beta$$
 Variance of estimator:  $$\mathrm{Var}(\hat\beta) = \sigma^2 (X^\top X)^{-1}$$  
   
 We can estimate $$\sigma^2$$ by:  
+
+<div style="padding-left: 2em">
+
 $$  
 \hat{\sigma}^2 = \frac{1}{n - p - 1} \sum_{i=1}^n (y_i - \hat{y}_i)^2
 = \frac{\text{RSS}}{n - p - 1}
-$$  
-  
+$$
+
+</div>
+
 Then the standard error of coefficient $$\hat\beta_j$$ is:  
-  
+
+<div style="padding-left: 2em">
+
 $$\mathrm{SE}(\hat\beta_j) = \sqrt{ \hat{\sigma}^2 [(X^\top X)^{-1}]_{jj} }$$
-  
-t-test for individual coefficient (e.g. H_0: \beta_j = 0):  
-  
+
+</div>
+
+t-test for individual coefficient (e.g. $$H_0: \beta_j = 0$$):  
+
+<div style="padding-left: 2em">
+
 $$t_j = \frac{\hat\beta_j - 0}{\mathrm{SE}(\hat\beta_j)}$$
-  
-With normal errors, t_j follows a t distribution with n - p - 1 degrees of freedom. We get a p-value and can build confidence intervals.  
+
+</div>
+
+With normal errors, $$t_j$$ follows a t distribution with $$n - p - 1$$ degrees of freedom. We get a p-value and can build confidence intervals.  
   
 F-test for overall model: Compare full model vs intercept-only model to test if at least one coefficient is non-zero.  
 
@@ -187,70 +248,125 @@ F-test for overall model: Compare full model vs intercept-only model to test if 
 
 ##### Sampling distribution of $$\hat\beta$$
 
-Plug model into \hat\beta:  
-  
-$$\hat\beta = (X^\top X)^{-1} X^\top (X\beta + \varepsilon)$$  
-  
+Plug model into $$\hat\beta$$:  
+
+<div style="padding-left: 2em">
+
+$$\hat\beta = (X^\top X)^{-1} X^\top (X\beta + \varepsilon)$$
+
+</div>
+
 Distribute:  
-  
-$$\hat\beta = (X^\top X)^{-1} X^\top X\beta + (X^\top X)^{-1} X^\top \varepsilon$$  
-   
+
+<div style="padding-left: 2em">
+
+$$\hat\beta = (X^\top X)^{-1} X^\top X\beta + (X^\top X)^{-1} X^\top \varepsilon$$
+
+</div>
+
 Use $$(X^\top X)^{-1} X^\top X = I_p$$:  
-  
+
+<div style="padding-left: 2em">
+
 $$\hat\beta = \beta + (X^\top X)^{-1} X^\top \varepsilon$$
-  
+
+</div>
+
 Take expectation (condition on fixed X):  
-  
-$$\mathbb{E}[\hat\beta \mid X] = \beta + (X^\top X)^{-1} X^\top \mathbb{E}[\varepsilon \mid X] = \beta$$  
-  
+
+<div style="padding-left: 2em">
+
+$$\mathbb{E}[\hat\beta \mid X] = \beta + (X^\top X)^{-1} X^\top \mathbb{E}[\varepsilon \mid X] = \beta$$
+
+</div>
+
 So $$\hat\beta$$ is unbiased.  
   
 Variance:  
-  
-$$\text{Var}(\hat\beta \mid X) = \text{Var}\big((X^\top X)^{-1} X^\top \varepsilon \,\big|\, X\big)$$  
-  
-Let $$A = (X^\top X)^{-1} X^\top. Then \hat\beta = \beta + A\varepsilon$$, so:  
-  
+
+<div style="padding-left: 2em">
+
+$$\text{Var}(\hat\beta \mid X) = \text{Var}\big((X^\top X)^{-1} X^\top \varepsilon \,\big|\, X\big)$$
+
+</div>
+
+Let $$A = (X^\top X)^{-1} X^\top$$. Then $$\hat\beta = \beta + A\varepsilon$$, so:  
+
+<div style="padding-left: 2em">
+
 $$\text{Var}(\hat\beta \mid X) = A\,\text{Var}(\varepsilon \mid X)\,A^\top$$
-  
+
+</div>
+
 By assumption, $$\text{Var}(\varepsilon \mid X) = \sigma^2 I_n$$. Thus:  
-  
+
+<div style="padding-left: 2em">
+
 $$\text{Var}(\hat\beta \mid X) = A(\sigma^2 I_n)A^\top = \sigma^2 A A^\top$$
-  
+
+</div>
+
 Compute $$AA^\top$$:  
-  
+
+<div style="padding-left: 2em">
+
 $$A = (X^\top X)^{-1} X^\top \quad\Rightarrow\quad A A^\top = (X^\top X)^{-1} X^\top X (X^\top X)^{-1} = (X^\top X)^{-1}$$
-  
+
+</div>
+
 So:  
-  
+
+<div style="padding-left: 2em">
+
 $$\boxed{\text{Var}(\hat\beta \mid X) = \sigma^2 (X^\top X)^{-1}}$$
-  
-If errors are normal, since \hat\beta is a linear transformation of a multivariate normal \varepsilon, we have:  
-  
+
+</div>
+
+If errors are normal, since $$\hat\beta$$ is a linear transformation of a multivariate normal $$\varepsilon$$, we have:  
+
+<div style="padding-left: 2em">
+
 $$\hat\beta \mid X \sim \mathcal{N}\left(\beta,\ \sigma^2 (X^\top X)^{-1}\right)$$
-  
+
+</div>
+
 ##### Standard error of a single coefficient
 
 Let  
-  
-$$\text{Var}(\hat\beta \mid X) = \sigma^2 (X^\top X)^{-1} = \sigma^2 C$$  
-  
+
+<div style="padding-left: 2em">
+
+$$\text{Var}(\hat\beta \mid X) = \sigma^2 (X^\top X)^{-1} = \sigma^2 C$$
+
+</div>
+
 where $$C = (X^\top X)^{-1}$$ is a $$p \times p$$ matrix.  
   
 The variance of the j-th coefficient $$\hat\beta_j$$ is the j-th diagonal element of this covariance matrix:  
-  
-$$\text{Var}(\hat\beta_j \mid X) = \sigma^2 C_{jj}$$  
-  
-So the standard deviation (population standard deviation of \hat\beta_j) is:  
-  
-$$\text{SD}(\hat\beta_j \mid X) = \sqrt{\sigma^2 C_{jj}} = \sigma \sqrt{C_{jj}}$$  
-  
-We don’t know $$\sigma$$. In practice, we replace $$\sigma^2$$ with its estimator $$s^2$$. Then the standard error of $$\hat\beta_j$$ is:  
-  
+
+<div style="padding-left: 2em">
+
+$$\text{Var}(\hat\beta_j \mid X) = \sigma^2 C_{jj}$$
+
+</div>
+
+So the standard deviation (population standard deviation of $$\hat\beta_j$$) is:  
+
+<div style="padding-left: 2em">
+
+$$\text{SD}(\hat\beta_j \mid X) = \sqrt{\sigma^2 C_{jj}} = \sigma \sqrt{C_{jj}}$$
+
+</div>
+
+We don't know $$\sigma$$. In practice, we replace $$\sigma^2$$ with its estimator $$s^2$$. Then the standard error of $$\hat\beta_j$$ is:  
+
+<div style="padding-left: 2em">
+
 $$\boxed{\text{SE}(\hat\beta_j) = \sqrt{s^2 C_{jj}}}$$
-  
-where $$C_{jj}$$ is the j-th diagonal element of $$(X^\top X)^{-1}$$.  
-  
+
+</div>
+
+where $$C_{jj}$$ is the j-th diagonal element of $$(X^\top X)^{-1}$$.
 ##### Single-predictor intuition  
   
 For simple linear regression with intercept:  
@@ -356,7 +472,7 @@ Suppose you want to predict Y using variables X1 and X2, and linear regression.
 X1 and X2 are correlated and have variance of 1. You try fitting two different models with maximum likelihood - one that predicts Y using X1 and X2, and another that predicts Y using new predictors (X1 + X2) and (X1 - X2). Which method is better and why?  
 
 
-1. The two models are equivalent, predictively  
+#### 1. The two models are equivalent, predictively  
 
 The predictors (X1 + X2) and (X1 - X2) are just linear combinations of X1 and X2. Since linear regression with maximum likelihood (i.e., ordinary least squares under Gaussian errors) is being used in both cases, the two models span the exact same column space. Any prediction that can be written as
   
@@ -368,7 +484,7 @@ $$\hat{Y} = \gamma_1 (X_1 + X_2) + \gamma_2 (X_1 - X_2)$$
   
 by setting $\gamma_1 = (\beta_1 + \beta_2)/2$ and $\gamma_2 = (\beta_1 - \beta_2)/2$, and vice versa. The mapping is invertible, so the two parameterizations cover exactly the same set of possible fitted surfaces. Maximum likelihood will find the global optimum in both cases (the OLS objective is convex), so the fitted values $\hat{Y}$, residuals, and log-likelihood will be identical.
   
-2. Orthogonal  
+#### 2. Orthogonal  
 
 Since X1 and X2 are correlated (both with variance 1), the design matrix in the original basis has correlated columns, which inflates the variance of $\hat{\beta}_1$ and $\hat{\beta}_2$ (multicollinearity). The transformation to (X1 + X2) and (X1 - X2) can decorrelate or reduce the correlation between the new predictors.   
   
