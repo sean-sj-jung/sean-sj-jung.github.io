@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Reservorr Sampling"
+title: "Reservoir Sampling"
 date: 2021-03-01
 excerpt: "Reservoir Sampling and Algorithm R"
 ---
@@ -15,12 +15,58 @@ The goal is to maintain a "reservoir" of size $k$ from a stream of items $$1, 2,
     * If $j \leq k$, replace the $j$-th element in the reservoir with the $i$-th element from the stream.
 
 
-**The Probability Logic:**
+### The Probability Logic
 At any step $i$, the probability that the $i$-th item enters the reservoir is exactly $\frac{k}{i}$. Through induction, you can prove that after $n$ steps, the probability that any specific item from the stream is in the reservoir is:
 
 $$P = \frac{k}{n}$$
 
 This holds true even though you never knew what $n$ was until the stream ended.
+
+### Mathematical induction of the Reservoir Sampling (Algorithm R)  
+
+We want to prove that after $n$ items have been processed, the probability that any specific item $i$ (where $1 \leq i \leq n$) is in the reservoir of size $k$ is:
+$$P(i \in R_n) = \frac{k}{n}$$
+  
+
+### 1. The Base Case
+Consider the moment we have processed exactly $n = k$ items. 
+According to the algorithm, the first $k$ items are all placed directly into the reservoir. Therefore, for any item $i \in \{1, \dots, k\}$:
+$$P(i \in R_k) = \frac{k}{k} = 1$$
+The base case holds.
+
+### 2. The Inductive Step
+Assume the hypothesis is true for $n$ items. That is, for any item $i$ processed so far:
+$$P(i \in R_n) = \frac{k}{n}$$
+
+Now, we process the $(n+1)$-th item. We need to show that for all items $\{1, \dots, n+1\}$, the probability of being in the reservoir becomes $\frac{k}{n+1}$.
+
+#### For the new item $(n+1)$:
+The algorithm states we generate a random integer $j \in \{1, \dots, n+1\}$. If $j \leq k$, the new item enters the reservoir. 
+$$P(n+1 \in R_{n+1}) = \frac{k}{n+1}$$
+This matches our goal for the new item.
+
+#### For any old item $i$ (where $i \leq n$):
+An old item $i$ is in the reservoir at step $n+1$ if and only if:
+1. It was already in the reservoir at step $n$.
+2. It was **not** replaced by the $(n+1)$-th item.
+
+Let $A$ be the event that item $i$ was in the reservoir at step $n$. By our inductive hypothesis:
+$$P(A) = \frac{k}{n}$$
+
+Let $B$ be the event that item $i$ is **not** replaced by item $n+1$. 
+Item $i$ is replaced only if item $n+1$ is chosen to enter the reservoir (probability $\frac{k}{n+1}$) **and** item $i$ is specifically chosen to be the one swapped out (probability $\frac{1}{k}$).
+
+$$P(i \text{ is replaced}) = P(n+1 \text{ enters}) \times P(i \text{ is chosen for replacement})$$
+$$P(i \text{ is replaced}) = \frac{k}{n+1} \times \frac{1}{k} = \frac{1}{n+1}$$
+
+Therefore, the probability of *not* being replaced is:
+$$P(B) = 1 - \frac{1}{n+1} = \frac{n}{n+1}$$
+
+Since the events are independent relative to the $(n+1)$-th choice:
+$$P(i \in R_{n+1}) = P(A) \times P(B)$$
+$$P(i \in R_{n+1}) = \frac{k}{n} \times \frac{n}{n+1} = \frac{k}{n+1}$$
+
+Both the new item and all previous items now have a probability of exactly $\frac{k}{n+1}$ of being in the reservoir. By the principle of induction, the algorithm produces a true simple random sample for any $n \geq k$.
 
 ---
 
