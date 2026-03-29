@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Example problems, various topics"
-date: 2022-12-01
+date: 2023-12-01
 excerpt: "Examples"
 ---
 
