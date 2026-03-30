@@ -15,7 +15,7 @@ The goal is to maintain a "reservoir" of size $k$ from a stream of items $$1, 2,
     * If $j \leq k$, replace the $j$-th element in the reservoir with the $i$-th element from the stream.
 
 
-### The Probability Logic
+### The Probability Logic  
 At any step $i$, the probability that the $i$-th item enters the reservoir is exactly $\frac{k}{i}$. Through induction, you can prove that after $n$ steps, the probability that any specific item from the stream is in the reservoir is:
 
 $$P = \frac{k}{n}$$
@@ -69,6 +69,12 @@ $$P(i \in R_{n+1}) = \frac{k}{n} \times \frac{n}{n+1} = \frac{k}{n+1}$$
 Both the new item and all previous items now have a probability of exactly $\frac{k}{n+1}$ of being in the reservoir. By the principle of induction, the algorithm produces a true simple random sample for any $n \geq k$.
 
 ---
+  
+### Use case in machine learning  
+- **Infinite Streams**: You can't "pick a random row" from a database table that is being written to 50,000 times per second by global users.  
+- **Stochastic Gradient Descent**: When streaming ~10TB from S3, you use reservoir sampling to make sure mini-batches aren't biased by the order of the file.  
+  
+---
 
 ### [Algorithm R](https://en.wikipedia.org/wiki/Reservoir_sampling)  
 Case of simple, uniform sampling.  
@@ -117,8 +123,10 @@ for item in sorted(counts):
     # You should see each item picked roughly 5% of the time, confirming uniformity
     pct = counts[item] / trials * 100 
 ```
-   
-### Algorithm A-Res  
+
+---
+
+### Algorithm A-Ress  
 Case of weighted sampling.  
   
 Implementation:  
@@ -209,13 +217,11 @@ for item in sorted(counts):
 
 ```
 
+### A note for the random key trick 
+
 ---
-
-### Use case in machine learning
-
-In the era of Big Data and LLMs, we are constantly dealing with "Infinite Streams." You can't "pick a random row" from a database table that is being written to 50,000 times per second by global users. 
-
-Example Problem
+  
+### Example Problem
 ```python
 """
 Part I. 
