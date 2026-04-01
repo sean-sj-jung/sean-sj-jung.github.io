@@ -217,15 +217,25 @@ for item in sorted(counts):
 
 ```
 
-### A note for the random key trick 
+### A note for the random key trick  
+
+1. Uniform Case:  
+Assign a random key drawn from Uniform(0, 1), then keep the top-k keys.  
+Equal probability of landing in the top k.  
+  
+2. Weighted Case:  
+Transformation $$ key = U ^ (1/w) $$ where U is drawn from Uniform(0, 1), and w is the item's weight.  
+- Large w → small exponent (1/w ≈ 0) → anything raised to a power near 0 goes toward 1. So the key is pushed close to 1. Heavy items almost always get high keys.  
+- Small w → large exponent (1/w is big) → U raised to a large power gets crushed toward 0. Light items usually get low keys.  
+- Efraimidis and Spirakis (2006) proved that "when you use U^(1/w) as the key and keep the top-k, the probability of any particular item being included in the sample is proportional to its weight"  
 
 ---
   
-### Example Problem
+### Example Problem  
 ```python
 """
 Part I. 
-Given an array of scores, implement a random sampler randomly returns an index with probability proportional to its score.
+Given an array of scores, implement a random sampler that randomly returns an index with probability proportional to its score.
 
 Input: scores = [1]
 Output: 0
@@ -235,6 +245,84 @@ Calls: sampler(), sampler(), sampler()
 Output: [1, 1, 0]
 """
 
+import random
+
+class WeightedSampler:
+    def __init__(self, scores): # Create CDF out of scores
+        self.cumulative = []
+        total = 0
+        for s in scores:
+            total += s
+            self.cumulative.append(total)
+        self.total = total
+
+    def sample(self): # Binary search through the CDF array
+        r = random.random() * self.total
+        lo, hi = 0, len(self.cumulative) - 1
+        while lo < hi:
+            mid = (lo + hi) // 2
+            if self.cumulative[mid] <= r:
+                lo = mid + 1
+            else:
+                hi = mid
+        return lo
 
 
+"""
+Part II.
+Now imagine the scores are streamed instead, and you can't store them in memory. Modify your solution so that it processes one entry at a time, while still selecting index with probability proportional to their score.
+"""
+
+# Streaming Top-1 Solution
+import random
+
+class StreamingWeightedSampler:
+    def __init__(self):
+        self.current_selection = None
+        self.total_weight = 0
+
+    def process_element(self, item_id, score):
+        """
+        Processes one product at a time from a stream.
+        """
+        # 1. Increase the total weight seen so far
+        self.total_weight += score
+        
+        # 2. The probability of picking the NEW item is: score / total_weight
+        if random.uniform(0, self.total_weight) < score:
+            self.current_selection = item_id
+
+    def sample(self):
+        return self.current_selection
+
+# --- Example Usage ---
+sampler = StreamingWeightedSampler()
+stream = [("Product A", 10), ("Product B", 20), ("Product C", 70)]
+
+for product_id, score in stream:
+    sampler.process_element(product_id, score)
+
+print(f"Final Selection: {sampler.sample()}")
+
+
+
+# Streaming Top-k Solution
+import random
+import heapq
+
+def weighted_reservoir_top_k(stream, k):
+    heap = [] # Min-heap to keep track of the largest keys
+    
+    for item_id, weight in stream:
+        # Generate the 'key'
+        # Formula: u^(1/w)
+        key = random.random() ** (1.0 / weight)
+        
+        if len(heap) < k:
+            heapq.heappush(heap, (key, item_id))
+        elif key > heap[0][0]:
+            heapq.heapreplace(heap, (key, item_id))
+            
+    return [item for key, item in heap]
 ```
+
