@@ -126,7 +126,7 @@ for item in sorted(counts):
 
 ---
 
-### Algorithm A-Ress  
+### Algorithm A-Res  
 Case of weighted sampling.  
   
 Implementation:  
@@ -228,9 +228,11 @@ Transformation $$ key = U ^ (1/w) $$ where U is drawn from Uniform(0, 1), and w 
 - Large w → small exponent (1/w ≈ 0) → anything raised to a power near 0 goes toward 1. So the key is pushed close to 1. Heavy items almost always get high keys.  
 - Small w → large exponent (1/w is big) → U raised to a large power gets crushed toward 0. Light items usually get low keys.  
 - Efraimidis and Spirakis (2006) proved that "when you use U^(1/w) as the key and keep the top-k, the probability of any particular item being included in the sample is proportional to its weight"  
+  
 
 ---
   
+
 ### Example Problem  
 ```python
 """

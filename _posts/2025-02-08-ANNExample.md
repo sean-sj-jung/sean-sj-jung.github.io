@@ -4,7 +4,25 @@ title: "Implement ANN search at scale"
 date: 2025-02-08
 excerpt: "Example implementation of scalable approximate search using FAISS."
 ---
+  
 
+### Scaling Problem  
+Exact nearest neightbor search is $$O(n·d)$$ per query. if n is a billion documents, and d is 8192-dimensional embeddings, the search becomes impractical for real-time serving.  The embeddings of billion documents will be in the order of terabytes. Vector quantization is often employed to reduce the size by several order.  
+In practice, vector database solutions (e.g. Pinecone, Weaviate etc) provide sharding, replication, index management and so on, utilizing multiple techniques such as Inverted File Index (IVF), HNSW, Quantization etc.  
+  
+### Example Background  
+  
+- Stage 1: ANN Retrieval  
+  - Search billions of vectors, return top ~100 candidates.  
+  - FAISS's [HNSW](https://sean-sj-jung.github.io/2025/02/07/HNSW.html) layer, fast but approximate.  
+- Stage 2: Re-ranking  
+  - Using encoder model, score (query, document) pairs jointly to accurately capture similarity.  
+  - Slow
+- Stage 3:
+  - Use the top-k.  
+  - Below example is for LLM generation (RAG use case)  
+  
+  
 
 ```python
 """
