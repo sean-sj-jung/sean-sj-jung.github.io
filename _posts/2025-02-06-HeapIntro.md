@@ -5,17 +5,19 @@ date: 2025-02-06
 excerpt: "A brief overview of Heap."
 ---
 
-## Heap
-
+## Heap  
+  
+---   
+  
 ## 1. Core Concepts  
-
+  
 ### What is a Heap?
 
 A **binary heap** is a **nearly complete binary tree** stored as an array.
 
 - All levels are fully filled **except possibly the lowest**.
 - The lowest level is filled **from left to right** (no gaps).
-
+  
 ### Max-Heap vs Min-Heap
 
 | Property | Max-Heap | Min-Heap |
@@ -23,7 +25,7 @@ A **binary heap** is a **nearly complete binary tree** stored as an array.
 | Rule | Every node ≤ its parent | Every node ≥ its parent |
 | Root | Largest element | Smallest element |
 | Classic use | **Heapsort** | **Priority queues** |
-
+  
 ### Array Representation
 
 For a 0-indexed array representing the heap:
@@ -46,12 +48,12 @@ Why arrays? No pointer overhead, great cache locality, and the index math above 
 | **extract-min/max** (pop) | O(log n) | Swap root with last, remove last, then **sift down** |
 | **heapify** (build heap from array) | **O(n)** | Bottom-up sift-down; *not* O(n log n) |
 | **heap sort** | O(n log n) | Build heap O(n) + n × extract O(log n) |
-
+  
 ### Sift-Up and Sift-Down (the two fundamental moves)
 
 - **Sift-up** (a.k.a. bubble-up): after inserting at the end, repeatedly swap the node with its parent until the heap property is restored.
 - **Sift-down** (a.k.a. bubble-down / heapify-down): after removing the root, place the last element at the root and repeatedly swap it with its smaller (min-heap) or larger (max-heap) child until the heap property is restored.
-
+  
 ### Why Build-Heap is O(n), not O(n log n)
 
 A common interview follow-up. The intuition: most nodes are near the bottom of the tree where sift-down does very little work. Summing the work across all levels gives a geometric series that converges to O(n).
@@ -145,7 +147,7 @@ if __name__ == "__main__":
     print("Heap-sorted:", sorted_out)
     # Output: Heap-sorted: [1, 2, 3, 5, 7, 8]
 ```
-
+  
 ---
 
 ## 3. Common `heapq` Patterns
@@ -242,7 +244,7 @@ c = [3, 6, 9]
 merged = list(heapq.merge(a, b, c))
 # [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
-
+  
 ---
 
 ## 4. LeetCode Problems

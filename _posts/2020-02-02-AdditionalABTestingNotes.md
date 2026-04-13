@@ -21,10 +21,10 @@ It's used to validate your testing setup and ensure your randomization and measu
 1. Difference in distribution between population and sample
 	caused by ramping up plans, multiple tests in parallel, segmentation by attributes subject to change (e.g. location) 
 
-2. Violation of SUTVA (Stable Unit Treatment Value Assumption) aka spillover 
-	The outcome of treatment only depends on the subject’s status, and is unaffected by another subject’s status
-		e.g. social media (a user’s behavior affects another), Two-sided or shared resources (Uber, Lyft)
-			Insta - Lower minimum fee of delivery - limit shopper / discourage users in control group etc 
+2. Violation of SUTVA (Stable Unit Treatment Value Assumption) aka spillover  
+	The outcome of treatment only depends on the subject’s status, and is unaffected by another subject’s status. For example:    
+		social media (a user’s behavior affects another), Two-sided or shared resources (Uber, Lyft)  
+		Cart/Dash - Lower minimum fee of delivery - limit shopper / discourage users in control group etc   
 
 3. Retention of the change 
 
@@ -94,10 +94,6 @@ This z-score can then be used to find a p-value to test the null hypothesis: $$H
   $$
   \text{SE}(\Delta) = \sqrt{ \frac{p_A (1 - p_A)}{n_A} + \frac{p_B (1 - p_B)}{n_B} }
   $$
-
----
-
-Would you like a Python function that calculates standard error, confidence intervals, and p-values for A/B test data?
 
 ---
 
