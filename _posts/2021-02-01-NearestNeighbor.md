@@ -97,8 +97,6 @@ def kNN(data:np.ndarray, target:np.ndarray, k:int = 3) -> int:
 
     return target_label
 
-
-
 print(kNN(data,target))
 ```
 
@@ -139,7 +137,6 @@ The fundamental difference is Exhaustiveness.
 * ANN: when you are dealing with high-dimensional embeddings at scale (e.g., Pinterest visual search, Spotify recommendations, or LLM retrieval-augmented generation).
 
 ### Common ANN Algorithms (Good for "Bonus Points")
-If you want to impress the interviewer, mention the techniques used to achieve that speed:
 * HNSW (Hierarchical Navigable Small World): A graph-based approach.
 * IVF (Inverted File Index): Dividing the space into Voronoi cells.
 * LSH (Locality Sensitive Hashing): Hashing similar points into the same "buckets."

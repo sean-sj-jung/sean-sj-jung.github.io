@@ -96,8 +96,8 @@ Model evaluation is the process of assessing how well a machine learning model p
 - **F1 Score**: Harmonic mean of precision and recall
 - **ROC-AUC**: Area under the receiver operating characteristic curve
 
-#### Regression
-- **Mean Absolute Error (MAE)**: $$ \frac{1}{n} \sum |y_i - \hat{y}_i| $$
+#### Regression  
+- **Mean Absolute Error (MAE)**: $$ \frac{1}{n} \sum (|y_i - \hat{y}_i|) $$
     - Robust to outliers  
 - **Mean Squared Error (MSE)**: $$ \frac{1}{n} \sum (y_i - \hat{y}_i)^2 $$
     - Penalizes large error  
