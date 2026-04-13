@@ -10,7 +10,7 @@ excerpt: "SVM, Decision Tree, Bagging and Boosting, Clustering and so on"
 ### Bias in Machine Learning
 
 #### Type of bias
-- Sampling/selection bias, sample distribution \ne population distribution
+- Sampling/selection bias, sample distribution $$\ne$$ population distribution
 - Label bias, human prejudices or systemic errors in label, e.g. survey
 - Measurement bias, errors while measruing or recording
 - Historical bias, bias in data itself such as social inequalities

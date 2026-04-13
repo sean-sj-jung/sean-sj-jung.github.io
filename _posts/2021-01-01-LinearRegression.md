@@ -4,7 +4,7 @@ title: "Linear Regression"
 date: 2021-01-01
 excerpt: "Another popular topic"
 ---
-
+  
 ### Linear Regression  
 
 1. Underlying Assumption
@@ -19,6 +19,7 @@ excerpt: "Another popular topic"
 
 
 ---
+  
 ### A Linear Regression Model  
 
 <div style="padding-left: 2em">
@@ -56,12 +57,12 @@ The variance must remain constant:
 * Versus the predictions
 * Versus any independent variable
 
-#### 4. Normality of the Error Distribution
+#### 4. Normality of the Error Distribution  
 
 #### 5. Lack of perfect multicolinearity in the predictors   
 If perfect colinearity, the $$\beta$$ will be non-identifiable as there is no unique solution.  
 
-⸻
+---
 
 ### OLS Fitting
 
@@ -203,7 +204,7 @@ $$
 For fixed $$\sigma^2$$, maximizing $$\ell$$ w.r.t. $$\beta$$ is equivalent to minimizing $$\|\mathbf{y} - X\beta\|^2$$.  
 i.e. OLS = MLE for $$\beta$$ under Gaussian noise assumption.  
 
-⸻
+---
 
 ### Test statistics  
   
@@ -230,11 +231,11 @@ $$\mathrm{SE}(\hat\beta_j) = \sqrt{ \hat{\sigma}^2 [(X^\top X)^{-1}]_{jj} }$$
 
 </div>
 
-t-test for individual coefficient (e.g. $$H_0: \beta_j = 0$$):  
+t-test for individual coefficient:  
 
 <div style="padding-left: 2em">
 
-$$t_j = \frac{\hat\beta_j - 0}{\mathrm{SE}(\hat\beta_j)}$$
+$$t_j = \frac{\hat\beta_j - \beta_j}{\mathrm{SE}(\hat\beta_j)}$$
 
 </div>
 
@@ -380,7 +381,7 @@ You can show (standard result) that:
   
 This matches the matrix formula: $$\text{SE}(\hat\beta_1)^2 = s^2 C_{11}.$$   
   
-⸻
+---
 
 ### R², Adjusted R² & interpretation  
 Total Sum of Squares (TSS):  $$\text{TSS} = \sum_{i=1}^n (y_i - \bar{y})^2$$  
@@ -404,7 +405,7 @@ Intuition:
 MSR ≈ variance in y explained per predictor (signal).  
 MSE ≈ variance of the noise (unexplained variation).  
   
-If the model is useless (H_0 true), adding predictors doesn’t reduce SSE much relative to noise, so MSR ≈ MSE and F \approx 1.  
+If the model is useless (H_0 true), adding predictors doesn’t reduce SSE much relative to noise, so MSR ≈ MSE and F $$\approx$$ 1.  
   
 If the model explains a lot relative to noise, MSR ≫ MSE and F is large.  
   
@@ -412,7 +413,7 @@ Under classical assumptions (linear model is correct, errors i.i.d. normal with 
 Under $$H_0$$, $$F \sim F_{k,\,n-k-1}$$  
 (F distribution with k and n-k-1 degrees of freedom)  
   
-⸻
+---
   
 ### Practical issues: multicollinearity, regularization, etc.  
   
@@ -452,11 +453,11 @@ OLS is unbiased but can have variance when:
 - out-of-sample prediction  
 L1 and L2 regularization can reduce variance with increase in bias  
   
-⸻
+---
   
 ### Example question  
   
-Let's say there is a linear regression model $$y = b0 + b1x1 + b2x2 + b3x3$$.   
+Let's say there is a linear regression model $$y = b_0 + b_1 x_1 + b_2 x_2 + b_3 x_3$$.   
 Q1. I'm interested in whether $$x_1$$ is any useful for predicting $$y$$. In this case, is there any point of including $$x_2$$ and $$x_3$$ in the model?  
 
 1. If you care about any association between $$x_1$$ and $$y$$, then a simple univariate regression will do.  
@@ -466,6 +467,8 @@ Q1. I'm interested in whether $$x_1$$ is any useful for predicting $$y$$. In thi
 Q2. If $$x_2$$ and $$x_3$$ are highly correlated, will it affect the estimate of $$\beta_1$$?  
 If $$x_1$$ is correlated as well, then the variance of the estimate will be inflated. But if it has 0 correlation with the two variables, then it won't be affected.  
   
+---
+
 ### Another example question  
 
 Suppose you want to predict Y using variables X1 and X2, and linear regression.  
