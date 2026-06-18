@@ -383,6 +383,61 @@ $$
   
 ---
   
+## Handling Mixed Data Types
+
+Mixed data refers to datasets containing both **numerical** (continuous/discrete) and **categorical** (nominal/ordinal) features. Handling them correctly is essential since most algorithms assume a single data type.
+
+### Approaches by Model Family
+
+#### 1. Simple / Linear Models — One-Hot Encoding
+For linear models (Logistic Regression, Linear SVM, etc.), one-hot encoding is the standard approach. Each categorical level becomes a binary column, making the data fully numerical. The drawback is that it treats every category as **equidistant** from every other, and can cause dimensionality explosion with high-cardinality features.
+
+#### 2. Tree-Based Models — Native Categorical Support
+Decision trees and tree-based ensembles like **LightGBM** and **CatBoost** handle categoricals natively. Because splits are based on thresholds or set membership rather than distance computation, there is no need to encode ordinality or assume metric structure.
+
+#### 3. Neural Networks — Embeddings
+For more complex problems, categorical variables can be embedded into dense vector spaces (entity embeddings). The key advantage is that embeddings **learn** that semantically related categories are close together in the embedding space, whereas one-hot encoding treats every category as equidistant. The embeddings are then concatenated with the numerical features and fed into the network.
+
+#### 4. Distance-Based Models (k-NN, Clustering) — Gower Distance
+Standard distance metrics like Euclidean distance are only meaningful for numerical data, so they break down on raw mixed-type inputs. **Gower distance** (Gower, 1971) is a purpose-built metric that handles this by computing a per-feature similarity score $s_{ijk}$ and averaging across all features:
+
+$$
+S_{ij} = \frac{\sum_{k=1}^{N} s_{ijk} \cdot \delta_{ijk}}{\sum_{k=1}^{N} \delta_{ijk}}
+$$
+
+where $\delta_{ijk} = 1$ if the feature is available for both observations and $0$ otherwise (i.e. it naturally handles missing values).
+
+The per-feature score depends on the variable type:
+
+- **Numerical**: $s_{ijk} = 1 - \dfrac{|x_{ik} - x_{jk}|}{R_k}$, where $R_k$ is the range of feature $k$. This normalises differences to $[0, 1]$.
+
+- **Categorical / Binary**: $s_{ijk} = \begin{cases} 1 & \text{if } x_{ik} = x_{jk} \\ 0 & \text{otherwise} \end{cases}$
+
+- **Dichotomous** (presence-only, e.g. "has a rare disease"): $s_{ijk} = 1$ only when both observations have the feature present; two observations both *lacking* it are not considered similar.
+
+The total similarity score $S_{ij} \in [0, 1]$ is then converted to a distance:
+
+$$
+D_{ij} = \sqrt{1 - S_{ij}}
+$$
+
+This distance matrix can be plugged directly into any distance-based algorithm (k-NN, k-Medoids, hierarchical clustering, DBSCAN).
+
+**Limitations of Gower distance:**
+- Categorical features can dominate if there are many of them relative to numerical ones (unbalanced contribution problem). Weighted variants exist to address this.
+- Computationally expensive for large datasets since it requires an $n \times n$ distance matrix.
+
+### Summary
+
+| Approach | Best For | Notes |
+|---|---|---|
+| One-hot encoding | Linear models | Sparse, equidistant |
+| Native categoricals | LightGBM, CatBoost | No encoding needed |
+| Embeddings | Neural networks | Learns semantic similarity |
+| Gower distance | k-NN, clustering | Handles missing values |
+
+---
+
 ## Lazy Learning vs. Eager Learning
 ### **Lazy Learning**
 - **Delays** processing until a query is received.
