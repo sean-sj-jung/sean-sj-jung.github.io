@@ -175,4 +175,5 @@ Consider a predictor:
   $$
   \text{Total Error} = \text{Bias}^2 + \text{Variance} + \text{Irreducible Error}
   $$
-  
+
+
