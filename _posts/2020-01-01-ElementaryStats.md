@@ -57,20 +57,20 @@ $$
 ### Bayes' Theorem
 Computes conditional probability:
 
-$$
-P(A|B) = \frac{P(B|A) P(A)}{P(B)}
-$$  
+  $$
+  P(A|B) = \frac{P(B|A) P(A)}{P(B)}
+  $$  
   
-$$P(A)$$ : prior  
-$$P(B|A)$$ : likelihood  
-$$P(B)$$ : evidence  
-$$P(A|B)$$ : posterior  
+  $$P(A)$$ : prior  
+  $$P(B|A)$$ : likelihood  
+  $$P(B)$$ : evidence  
+  $$P(A|B)$$ : posterior  
   
-or  
+  or  
 
-$$
-P(A_i | B) = \frac{P(B | A_i) P(A_i)}{\sum_{j=1}^{n} P(B | A_j) P(A_j)}
-$$
+  $$
+  P(A_i | B) = \frac{P(B | A_i) P(A_i)}{\sum_{j=1}^{n} P(B | A_j) P(A_j)}
+  $$
 
 - Updates beliefs based on new evidence.
 - Used in Bayesian inference to derive posterior probabilities.
@@ -102,11 +102,13 @@ $$
   
 - Note:
   A simple logistic function:  
+
   $$
   \frac{1}{1+e^{-x}}
   $$
+  
+  Logistic unit (logit) is inverse of logistic function:  
 
-  Logistic unit (logit) is inverse of logistic function:
   $$
   \ln\left(\frac{p}{1-p}\right)
   $$
@@ -114,7 +116,7 @@ $$
 
 
 ### Maximum Likelihood Estimation (MLE)
-  - Estimates coefficients by maximizing:
+  - Estimates coefficients by maximizing:  
 
   $$
   L = f(x_1) f(x_2) \dots f(x_n)
@@ -143,8 +145,8 @@ $$
 - **Tradeoff**: Minimizing both bias and variance is ideal.
   
   
-**Bias-Variance Decomposition**
-Consider a predictor:
+**Bias-Variance Decomposition**  
+Consider a predictor:  
 
   $$
   y = \hat{f}(x) + \epsilon
